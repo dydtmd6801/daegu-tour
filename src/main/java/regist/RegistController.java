@@ -1,6 +1,7 @@
 package regist;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +22,21 @@ public class RegistController {
     }
 
     @GetMapping("/step2")
-    public String step2() {
+    public String step2(RegistDto registDto) {
         return "redirect:/regist/step1";
     }
 
     @PostMapping("/step2")
-    public String step2(@RequestParam (value="agree", defaultValue = "false") Boolean agree) {
+    public String step2(@RequestParam (value="agree", defaultValue = "false") Boolean agree, RegistDto registDto) {
         if(!agree) {
             return "redirect:/regist/step1";
         }
         return "/regist/step2";
+    }
+
+    @PostMapping("/step3")
+    public String step3(RegistDto registDto, Model model) {
+        model.addAttribute("registDto", registDto);
+        return "/regist/step3";
     }
 }
