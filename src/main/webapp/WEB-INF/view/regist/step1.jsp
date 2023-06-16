@@ -11,9 +11,9 @@
     <title>step1</title>
 </head>
 <body>
-<form>
+<form action="step2" method="post">
     <h2>회원가입</h2>
-    <label>동의<input type="checkbox"/></label>
+    <label>동의<input type="checkbox" name="agree" /></label>
     <input type="submit" value="다음단계"/>
 </form>
 </body>
