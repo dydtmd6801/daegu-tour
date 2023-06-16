@@ -20,6 +20,11 @@ public class RegistController {
         return "regist/step1";
     }
 
+    @GetMapping("/step2")
+    public String step2() {
+        return "redirect:/regist/step1";
+    }
+
     @PostMapping("/step2")
     public String step2(@RequestParam (value="agree", defaultValue = "false") Boolean agree) {
         if(!agree) {
