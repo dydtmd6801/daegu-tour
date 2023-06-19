@@ -5,6 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import regist.RegistDto;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class MemberDaoTest {
 
     private MemberDao memberDao;
@@ -23,5 +27,11 @@ public class MemberDaoTest {
         registDto.setName("홍길동");
         registDto.setPhoneNumber("010-1111-2222");
         memberDao.insert(registDto);
+    }
+
+    @Test
+    public void findByIdTest() {
+        List<RegistDto> result = memberDao.findById("test");
+        assertThat(result).isNotNull();
     }
 }
