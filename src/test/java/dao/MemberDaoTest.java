@@ -34,4 +34,10 @@ public class MemberDaoTest {
         List<RegistDto> result = memberDao.findById("test");
         assertThat(result).isNotNull();
     }
+
+    @Test
+    public void findByIdFailTest() {
+        List<RegistDto> result = memberDao.findById("failId");
+        assertThat(result).isNull();
+    }
 }
