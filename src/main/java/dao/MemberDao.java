@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MemberDao {
 
@@ -37,5 +38,18 @@ public class MemberDao {
                 }, keyHolder);
         Number keyValue = keyHolder.getKey();
         registDto.setId(keyValue.longValue());
+    }
+
+    public List<RegistDto> findById(String id) {
+        List<RegistDto> result = jdbcTemplate.query("select * from MEMBER where USERID=?",
+                (rs, rowNum) -> {
+                    RegistDto registDto = new RegistDto();
+                    registDto.setUserId(rs.getString("USERID"));
+                    registDto.setPassword(rs.getString("PASSWORD"));
+                    registDto.setName(rs.getString("NAME"));
+                    registDto.setPhoneNumber(rs.getString("PHONENUMBER"));
+                    return registDto;
+                }, id);
+        return result;
     }
 }
