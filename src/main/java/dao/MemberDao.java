@@ -26,7 +26,7 @@ public class MemberDao {
                 new PreparedStatementCreator() {
                     @Override
                     public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                        PreparedStatement ps = con.prepareStatement("insert into MEMBER (`USERID`, `PASSWORD`, `NAME`, `PHONENUMBER`, `REGISTDATE`) values (?,?,?,?,?)", new String[]{"ID"});
+                        PreparedStatement ps = con.prepareStatement("insert into MEMBER (USERID, PASSWORD, NAME, PHONENUMBER, REGISTDATE) values (?,?,?,?,?)", new String[]{"ID"});
                         ps.setString(1, registDto.getUserId());
                         ps.setString(2, registDto.getPassword());
                         ps.setString(3, registDto.getName());
@@ -34,8 +34,7 @@ public class MemberDao {
                         ps.setString(5, String.valueOf(LocalDateTime.now()));
                         return ps;
                     }
-                }
-        );
+                }, keyHolder);
         Number keyValue = keyHolder.getKey();
         registDto.setId(keyValue.longValue());
     }

@@ -10,7 +10,7 @@ public class DBConfig {
     @Bean
     public DataSource dataSource() {
         DataSource ds = new DataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost/project01?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf8");
         ds.setUsername("project01");
         ds.setPassword("project01");
