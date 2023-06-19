@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import regist.RegistDto;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberDaoTest {
@@ -31,13 +29,13 @@ public class MemberDaoTest {
 
     @Test
     public void findByIdTest() {
-        List<RegistDto> result = memberDao.findById("test");
+        RegistDto result = memberDao.findById("test");
         assertThat(result).isNotNull();
     }
 
     @Test
     public void findByIdFailTest() {
-        List<RegistDto> result = memberDao.findById("failId");
+        RegistDto result = memberDao.findById("failId");
         assertThat(result).isNull();
     }
 }

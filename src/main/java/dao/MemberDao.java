@@ -40,7 +40,7 @@ public class MemberDao {
         registDto.setId(keyValue.longValue());
     }
 
-    public List<RegistDto> findById(String id) {
+    public RegistDto findById(String id) {
         List<RegistDto> result = jdbcTemplate.query("select * from MEMBER where USERID=?",
                 (rs, rowNum) -> {
                     RegistDto registDto = new RegistDto();
@@ -50,6 +50,6 @@ public class MemberDao {
                     registDto.setPhoneNumber(rs.getString("PHONENUMBER"));
                     return registDto;
                 }, id);
-        return result;
+        return result.isEmpty() ? null : result.get(0);
     }
 }
