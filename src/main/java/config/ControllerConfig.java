@@ -5,6 +5,7 @@ import login.LoginController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import regist.RegistController;
+import regist.RegistService;
 
 @Configuration
 public class ControllerConfig {
@@ -23,6 +24,8 @@ public class ControllerConfig {
 
     @Bean
     public RegistController registController() {
-        return new RegistController();
+        RegistController controller = new RegistController();
+        controller.setRegistService(new RegistService(memberDao()));
+        return controller;
     }
 }

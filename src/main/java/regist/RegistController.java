@@ -1,5 +1,7 @@
 package regist;
 
+import exception.DuplicateMemberException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/regist")
 public class RegistController {
+
+    private RegistService registService;
+
+    public void setRegistService(RegistService registService) {
+        this.registService = registService;
+    }
 
     @GetMapping
     public String showRegist() {
@@ -36,7 +44,12 @@ public class RegistController {
 
     @PostMapping("/step3")
     public String step3(RegistDto registDto, Model model) {
-        model.addAttribute("registDto", registDto);
-        return "/regist/step3";
+        try {
+            registService.join(registDto);
+            model.addAttribute("registDto", registDto);
+            return "/regist/step3";
+        } catch (DuplicateMemberException e) {
+            return "/regist/step2";
+        }
     }
 }
