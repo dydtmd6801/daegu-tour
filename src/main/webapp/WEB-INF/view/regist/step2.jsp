@@ -16,6 +16,7 @@
 <form:form action="step3" method="post" modelAttribute="registDto">
   <p>아이디 : <form:input path="userId"/></p>
   <p>비밀번호 : <form:password path="password"/></p>
+  <p>비밀번호 확인 : <form:password path="confirmPassword"/></p>
   <p>이름 : <form:input path="name"/></p>
   <p>전화번호 : <form:input path="phoneNumber"/></p>
   <input type="submit" value="회원가입">

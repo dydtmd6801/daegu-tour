@@ -5,6 +5,7 @@ public class RegistDto {
     private long id;
     private String userId;
     private String password;
+    private String confirmPassword;
     private String name;
     private String phoneNumber;
 
@@ -30,6 +31,14 @@ public class RegistDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getName() {
