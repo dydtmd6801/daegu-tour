@@ -1,6 +1,5 @@
-package dao;
-
 import config.DBConfig;
+import dao.MemberDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import regist.RegistDto;
