@@ -1,6 +1,7 @@
 package config;
 
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -22,6 +23,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.jsp("/WEB-INF/view/",".jsp");
     }
 
+    @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setBasename("message.label");
