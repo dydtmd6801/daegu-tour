@@ -1,7 +1,6 @@
 package regist;
 
 import exception.DuplicateMemberException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +44,9 @@ public class RegistController {
     @PostMapping("/step3")
     public String step3(RegistDto registDto, Model model) {
         try {
+            if(!registDto.getPassword().equals(registDto.getConfirmPassword())){
+                return "/regist/step2";
+            }
             registService.join(registDto);
             model.addAttribute("registDto", registDto);
             return "/regist/step3";
