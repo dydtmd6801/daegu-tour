@@ -4,10 +4,9 @@ import exception.DuplicateMemberException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/regist")
@@ -60,5 +59,11 @@ public class RegistController {
             errors.rejectValue("userId","duplicateUserId");
             return "/regist/step2";
         }
+    }
+
+    @ResponseBody
+    @PostMapping("/checkId")
+    public void test(HttpServletRequest request) {
+        System.out.println(request.getParameter("id"));
     }
 }

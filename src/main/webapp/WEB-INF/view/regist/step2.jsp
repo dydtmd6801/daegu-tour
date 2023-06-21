@@ -10,12 +10,14 @@
 <html>
 <head>
     <title>step2</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <h2>회원가입</h2>
 <form:form action="step3" method="post" modelAttribute="registDto">
-  <p>아이디 : <form:input path="userId"/></p>
+  <p>아이디 : <form:input path="userId" id="userId"/></p>
   <p><form:errors path="userId"/></p>
+  <input type="button" id="checkBtn" value="중복체크">
   <p>비밀번호 : <form:password path="password"/></p>
   <p><form:errors path="password"/></p>
   <p>비밀번호 확인 : <form:password path="confirmPassword"/></p>
@@ -26,5 +28,26 @@
   <p><form:errors path="phoneNumber"/></p>
   <input type="submit" value="회원가입">
 </form:form>
+<script>
+    let userId = document.getElementById("userId");
+    let checkBtn = document.getElementById("checkBtn");
+
+    const checkDuplication = () => {
+      console.log(userId.value);
+        $.ajax({
+            url: "/regist/checkId",
+            data: {"id" : userId.value},
+            type: "POST",
+            success: function () {
+                console.log("성공")
+            },
+            error: function () {
+                console.log("에러")
+            }
+        });
+    }
+
+    checkBtn.addEventListener("click", checkDuplication);
+</script>
 </body>
 </html>
