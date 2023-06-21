@@ -58,16 +58,13 @@ public class RegistController {
 
     @ResponseBody
     @PostMapping("/checkId")
-    public String checkId(HttpServletRequest request, Errors errors, Model model) {
-        String userId = request.getParameter("id");
+    public String checkId(HttpServletRequest request) {
+        String id = request.getParameter("id");
         try {
-            registService.checkDuplication(userId);
-            model.addAttribute("loginState","success");
-            return "/regist/step2";
+            registService.checkDuplication(id);
+            return "success";
         } catch (DuplicateMemberException e) {
-            model.addAttribute("loginState","fail");
-            errors.rejectValue("userId", "duplicateUserId");
-            return "/regist/step2";
+            return "fail";
         }
     }
 }
