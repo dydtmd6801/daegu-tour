@@ -47,23 +47,27 @@ public class RegistController {
         if(errors.hasErrors()) {
             return "/regist/step2";
         }
-        try {
-            if(!registDto.getPassword().equals(registDto.getConfirmPassword())){
-                errors.rejectValue("confirmPassword", "notMatchPassword");
-                return "/regist/step2";
-            }
-            registService.join(registDto);
-            model.addAttribute("registDto", registDto);
-            return "/regist/step3";
-        } catch (DuplicateMemberException e) {
-            errors.rejectValue("userId","duplicateUserId");
+        if(!registDto.getPassword().equals(registDto.getConfirmPassword())){
+            errors.rejectValue("confirmPassword", "notMatchPassword");
             return "/regist/step2";
         }
+        registService.join(registDto);
+        model.addAttribute("registDto", registDto);
+        return "/regist/step3";
     }
 
     @ResponseBody
     @PostMapping("/checkId")
-    public void test(HttpServletRequest request) {
-        System.out.println(request.getParameter("id"));
+    public String checkId(HttpServletRequest request, Errors errors, Model model) {
+        String userId = request.getParameter("id");
+        try {
+            registService.checkDuplication(userId);
+            model.addAttribute("loginState","success");
+            return "/regist/step2";
+        } catch (DuplicateMemberException e) {
+            model.addAttribute("loginState","fail");
+            errors.rejectValue("userId", "duplicateUserId");
+            return "/regist/step2";
+        }
     }
 }

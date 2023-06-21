@@ -11,11 +11,14 @@ public class RegistService {
         this.memberDao = memberDao;
     }
 
-    public void join(RegistDto registDto) {
-        RegistDto member = memberDao.findById(registDto.getUserId());
+    public void checkDuplication(String userId) {
+        RegistDto member = memberDao.findById(userId);
         if(member != null) {
             throw new DuplicateMemberException();
         }
+    }
+
+    public void join(RegistDto registDto) {
         memberDao.insert(registDto);
     }
 }
