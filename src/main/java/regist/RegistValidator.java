@@ -13,10 +13,10 @@ public class RegistValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors, "userId","required");
-        ValidationUtils.rejectIfEmpty(errors, "password","required");
-        ValidationUtils.rejectIfEmpty(errors, "confirmPassword","required");
-        ValidationUtils.rejectIfEmpty(errors, "name","required");
-        ValidationUtils.rejectIfEmpty(errors, "phoneNumber","required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId","required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password","required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword","required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name","required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneNumber","required");
     }
 }

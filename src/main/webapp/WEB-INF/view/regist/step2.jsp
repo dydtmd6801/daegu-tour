@@ -51,8 +51,10 @@
         });
         if (result === "success") {
             document.getElementById("result").innerHTML = "사용가능한 ID 입니다.";
-        } else {
+        } else if (result === "fail") {
             document.getElementById("result").innerHTML = "중복되는 ID 입니다.";
+        } else {
+            document.getElementById("result").innerHTML = "ID를 입력해주세요.";
         }
     }
 

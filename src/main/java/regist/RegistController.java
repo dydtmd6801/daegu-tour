@@ -70,6 +70,10 @@ public class RegistController {
     @PostMapping("/checkId")
     public String checkId(HttpServletRequest request, HttpSession session) {
         String id = request.getParameter("id");
+        if(id.isEmpty() || id.isBlank()) {
+            session.setAttribute("duplicate", "other");
+            return "other";
+        }
         try {
             registService.checkDuplication(id);
             session.setAttribute("duplicate","no");
