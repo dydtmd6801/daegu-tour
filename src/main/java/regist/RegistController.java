@@ -7,6 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/regist")
@@ -42,13 +43,22 @@ public class RegistController {
     }
 
     @PostMapping("/step3")
-    public String step3(RegistDto registDto, Model model, Errors errors) {
+    public String step3(RegistDto registDto, Model model, Errors errors, HttpSession session) {
         new RegistValidator().validate(registDto, errors);
         if(errors.hasErrors()) {
             return "/regist/step2";
         }
         if(!registDto.getPassword().equals(registDto.getConfirmPassword())){
             errors.rejectValue("confirmPassword", "notMatchPassword");
+            return "/regist/step2";
+        }
+        try {
+            if(!session.getAttribute("duplicate").equals("no")) {
+                errors.rejectValue("userId", "duplicateUserId");
+                return "/regist/step2";
+            }
+        } catch (NullPointerException e) {
+            errors.rejectValue("userId", "checkDuplication");
             return "/regist/step2";
         }
         registService.join(registDto);
@@ -58,12 +68,14 @@ public class RegistController {
 
     @ResponseBody
     @PostMapping("/checkId")
-    public String checkId(HttpServletRequest request) {
+    public String checkId(HttpServletRequest request, HttpSession session) {
         String id = request.getParameter("id");
         try {
             registService.checkDuplication(id);
+            session.setAttribute("duplicate","no");
             return "success";
         } catch (DuplicateMemberException e) {
+            session.setAttribute("duplicate","yes");
             return "fail";
         }
     }
