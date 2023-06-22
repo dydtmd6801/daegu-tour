@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: dydtm
@@ -11,13 +12,11 @@
     <title>로그인</title>
 </head>
 <body>
-<form>
-    아이디 : <br>
-    <input type="input"/>
-    비밀번호 : <br>
-    <input type="input"/>
+<form:form modelAttribute="loginDto">
+    <p>아이디 : <form:input path="userId"/></p>
+    <p>비밀번호 : <form:password path="userPassword" autocomplete="false"/></p>
     <input type="submit" value="로그인">
-</form>
+</form:form>
 <a href="/regist">[회원가입]</a>
 </body>
 </html>

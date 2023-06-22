@@ -5,8 +5,11 @@ public class LoginDto {
     private String userId;
     private String userPassword;
 
-    public LoginDto(String userId, String userPassword) {
+    public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 
