@@ -42,6 +42,11 @@ public class RegistController {
         return "/regist/step2";
     }
 
+    @GetMapping("/step3")
+    public String step3() {
+        return "redirect:/regist/step1";
+    }
+
     @PostMapping("/step3")
     public String step3(RegistDto registDto, Model model, Errors errors, HttpSession session) {
         new RegistValidator().validate(registDto, errors);
@@ -55,6 +60,7 @@ public class RegistController {
         try {
             if(!session.getAttribute("duplicate").equals("no")) {
                 errors.rejectValue("userId", "duplicateUserId");
+                session.removeAttribute("duplicate");
                 return "/regist/step2";
             }
         } catch (NullPointerException e) {
