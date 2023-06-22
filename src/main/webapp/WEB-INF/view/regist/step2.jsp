@@ -12,6 +12,7 @@
 <head>
     <title>step2</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script defer src="../../../static/checkDuplicationJS.js"></script>
 </head>
 <body>
 <h2>회원가입</h2>
@@ -30,35 +31,5 @@
     <p><form:errors path="phoneNumber"/></p>
     <input type="submit" value="회원가입">
 </form:form>
-<script>
-    let userId = document.getElementById("userId");
-    let checkBtn = document.getElementById("checkBtn");
-
-    const checkDuplication = () => {
-        let result = "";
-        console.log(userId.value);
-        $.ajax({
-            url: "/regist/checkId",
-            data: {"id": userId.value},
-            type: "POST",
-            async: false,
-            success: function (data) {
-                result = data
-            },
-            error: function () {
-                console.log("에러")
-            }
-        });
-        if (result === "success") {
-            document.getElementById("result").innerHTML = "사용가능한 ID 입니다.";
-        } else if (result === "fail") {
-            document.getElementById("result").innerHTML = "중복되는 ID 입니다.";
-        } else {
-            document.getElementById("result").innerHTML = "ID를 입력해주세요.";
-        }
-    }
-
-    checkBtn.addEventListener("click", checkDuplication);
-</script>
 </body>
 </html>
