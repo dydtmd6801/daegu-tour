@@ -1,6 +1,7 @@
 import config.DBConfig;
 import dao.MemberDao;
 import exception.MemberNotFoundException;
+import exception.NotMatchPasswordException;
 import login.LoginDto;
 import login.LoginService;
 import org.assertj.core.api.ThrowableAssert;
@@ -40,5 +41,14 @@ public class LoginServiceTest {
         loginInfo.setUserPassword("aabbcc");
 
         assertThatThrownBy(() -> loginService.Login(loginInfo)).isInstanceOf(MemberNotFoundException.class);
+    }
+
+    @Test
+    public void loginFailTest2() {
+        LoginDto loginInfo = new LoginDto();
+        loginInfo.setUserId("test");
+        loginInfo.setUserPassword("1111");
+
+        assertThatThrownBy(() -> loginService.Login(loginInfo)).isInstanceOf(NotMatchPasswordException.class);
     }
 }
