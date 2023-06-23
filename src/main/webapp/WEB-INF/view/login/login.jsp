@@ -14,7 +14,9 @@
 <body>
 <form:form modelAttribute="loginDto">
     <p>아이디 : <form:input path="userId"/></p>
+    <p><form:errors path="userId"/></p>
     <p>비밀번호 : <form:password path="userPassword" autocomplete="false"/></p>
+    <p><form:errors path="userPassword"/></p>
     <input type="submit" value="로그인">
 </form:form>
 <a href="/regist">[회원가입]</a>

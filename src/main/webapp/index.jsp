@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: dydtm
@@ -12,6 +13,11 @@
 </head>
 <body>
 <h2>메인화면</h2>
-<a href="/login">로그인</a>
+<c:if test="${empty AuthInfo}" >
+    <a href="/login">로그인</a>
+</c:if>
+<c:if test="${!empty AuthInfo}">
+    <p>환영합니다. ${AuthInfo.userName}님</p>
+</c:if>
 </body>
 </html>

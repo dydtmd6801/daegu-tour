@@ -40,7 +40,7 @@ public class LoginController {
             errors.rejectValue("userId", "memberNotFound");
             return "login/login";
         } catch (NotMatchPasswordException e) {
-            errors.rejectValue("userId","notMatchIdPassword");
+            errors.rejectValue("userPassword","notMatchIdPassword");
             return "login/login";
         }
     }
