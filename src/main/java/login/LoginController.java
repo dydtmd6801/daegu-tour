@@ -31,6 +31,10 @@ public class LoginController {
 
     @PostMapping
     public String login(LoginDto loginDto, Errors errors, HttpSession session) {
+        new LoginValidator().validate(loginDto, errors);
+        if(errors.hasErrors()) {
+            return "login/login";
+        }
         try {
             RegistDto memberInfo = loginService.Login(loginDto);
             AuthInfo authInfo = new AuthInfo(memberInfo.getUserId(), memberInfo.getName(), memberInfo.getPhoneNumber());
