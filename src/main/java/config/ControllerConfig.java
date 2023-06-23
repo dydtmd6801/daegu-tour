@@ -2,6 +2,7 @@ package config;
 
 import dao.MemberDao;
 import login.LoginController;
+import login.LoginService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import regist.RegistController;
@@ -18,8 +19,15 @@ public class ControllerConfig {
     }
 
     @Bean
+    public LoginService loginService() {
+        return new LoginService(memberDao());
+    }
+
+    @Bean
     public LoginController loginController() {
-        return new LoginController();
+        LoginController controller = new LoginController();
+        controller.setLoginService(loginService());
+        return controller;
     }
 
     @Bean
