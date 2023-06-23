@@ -19,5 +19,6 @@
 <c:if test="${!empty AuthInfo}">
     <p>환영합니다. ${AuthInfo.userName}님</p>
 </c:if>
+<a href="/tour">[관광 리스트]</a>
 </body>
 </html>
