@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import regist.RegistController;
 import regist.RegistService;
+import tour.TourController;
 
 @Configuration
 public class ControllerConfig {
@@ -35,5 +36,10 @@ public class ControllerConfig {
         RegistController controller = new RegistController();
         controller.setRegistService(new RegistService(memberDao()));
         return controller;
+    }
+
+    @Bean
+    public TourController tourController() {
+        return new TourController();
     }
 }
