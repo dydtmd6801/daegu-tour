@@ -22,8 +22,11 @@ public class LoginController {
     }
 
     @GetMapping
-    public String showLogin(LoginDto loginDto) {
-        return "login/login";
+    public String showLogin(LoginDto loginDto, HttpSession session) {
+        if(session.getAttribute("AuthInfo") == null) {
+            return "login/login";
+        }
+        return "../../index";
     }
 
     @PostMapping
