@@ -12,7 +12,7 @@
 <head>
     <title>step2</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer src="../../../static/checkDuplicationJS.js"></script>
+    <script defer src="../../../static/js/checkDuplicationJS.js"></script>
 </head>
 <body>
 <h2>회원가입</h2>

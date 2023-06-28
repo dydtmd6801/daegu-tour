@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>메인화면</title>
+    <link rel="stylesheet" href="static/css/font.css">
 </head>
 <body>
 <h2>메인화면</h2>
