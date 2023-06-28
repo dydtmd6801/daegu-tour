@@ -5,11 +5,13 @@ import login.LoginController;
 import login.LoginService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import regist.RegistController;
 import regist.RegistService;
 import tour.TourController;
 
 @Configuration
+@PropertySource("classpath:keyConfig.properties")
 public class ControllerConfig {
 
     private DBConfig dbConfig = new DBConfig();
