@@ -14,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script defer src="../../../static/js/checkValidation.js"></script>
+    <script defer src="../../../static/js/setLoginFormDesign.js"></script>
     <style>
         .errors {
             display: block;
@@ -40,7 +41,7 @@
             </div>
             <form:errors class="invalid-feedback errors" path="userPassword"/>
         </div>
-        <input type="submit" class="btn btn-outline-secondary w-100" value="로그인">
+        <input type="submit" class="btn btn-outline-secondary w-100 loginBtn" value="로그인">
     </form:form>
     <p class="mt-3">회원이 아니신가요? <a class="btn-link" href="/regist">회원가입</a></p>
 </div>
