@@ -21,10 +21,10 @@
     </style>
 </head>
 <body>
-<div class="m-auto mt-5 w-50 d-flex flex-column align-items-center">
+<div class="m-auto mt-5 w-25 d-flex flex-column align-items-center">
     <h1 class="display-5 mb-5">로그인</h1>
     <form:form modelAttribute="loginDto" class="needs-validation m-auto w-100 d-flex flex-column align-items-center" novalidate="true">
-        <div class="form-floating mt-3 mb-1 w-50">
+        <div class="form-floating mt-3 mb-1 w-100">
             <form:input path="userId" class="form-control" id="floatingInput" placeholder="아이디" required="false"/>
             <label for="floatingInput">아이디</label>
             <div class="invalid-feedback">
@@ -32,7 +32,7 @@
             </div>
             <form:errors class="invalid-feedback errors" path="userId"/>
         </div>
-        <div class="form-floating mb-2 w-50">
+        <div class="form-floating mb-2 w-100">
             <form:password path="userPassword" class="form-control" id="floatingPassword" placeholder="비밀번호" required="false" />
             <label for="floatingPassword">비밀번호</label>
             <div class="invalid-feedback">
@@ -40,7 +40,7 @@
             </div>
             <form:errors class="invalid-feedback errors" path="userPassword"/>
         </div>
-        <input type="submit" class="btn btn-outline-secondary w-50" value="로그인">
+        <input type="submit" class="btn btn-outline-secondary w-100" value="로그인">
     </form:form>
     <p class="mt-3">회원이 아니신가요? <a class="btn-link" href="/regist">회원가입</a></p>
 </div>
