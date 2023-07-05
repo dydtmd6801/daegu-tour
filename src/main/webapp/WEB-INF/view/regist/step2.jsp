@@ -38,7 +38,7 @@
             <button class="btn btn-outline-secondary" type="button" id="checkBtn">중복체크</button>
         </div>
         <div id="result" class="invalid-feedback errors mb-2"></div>
-        <form:errors class="invalid-feedback errors" path="userId"/>
+        <form:errors class="invalid-feedback errors mb-2" path="userId"/>
 
         <div class="form-floating mb-2 w-100">
             <form:password path="password" class="form-control" id="floatingPassword" placeholder="비밀번호" required="false" />

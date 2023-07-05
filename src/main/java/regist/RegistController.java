@@ -86,7 +86,7 @@ public class RegistController {
     public String checkId(HttpServletRequest request, HttpSession session) {
         String id = request.getParameter("id");
         HashMap<String, String> map = new HashMap<>();
-        if(id.isEmpty() || id.isBlank()) {
+        if(id.isEmpty() || id.isBlank() || id.indexOf(' ') >= 0) {
             map.put("other",id);
             session.setAttribute("duplicate", map);
             return "other";

@@ -1,6 +1,7 @@
 let userId = document.getElementById("userId");
 let checkBtn = document.getElementById("checkBtn");
 let result = document.getElementById("result");
+let errors = document.querySelectorAll(".errors");
 
 let userIdValue = ""
 
@@ -20,7 +21,7 @@ const checkDuplication = () => {
                 result.innerHTML = "중복되는 ID 입니다.";
                 result.style.color = "#dc3545";
             } else {
-                result.innerHTML = "ID를 입력해주세요.";
+                result.innerHTML = "올바르지 않은 형식입니다.";
                 result.style.color = "#dc3545";
             }
         },
@@ -33,6 +34,7 @@ const checkDuplication = () => {
 const changeUserIdValue = () => {
     if (userIdValue !== userId.value) {
         result.innerHTML = "";
+        errors[1].innerHTML = "";
     }
 }
 
