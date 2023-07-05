@@ -17,6 +17,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script defer src="../../../static/js/checkDuplicationJS.js"></script>
     <script defer src="../../../static/js/checkValidation.js"></script>
+    <script defer src="../../../static/js/setRegistFormDesign.js"></script>
     <style>
         .errors{
             display: block;
@@ -76,7 +77,7 @@
             <form:errors class="invalid-feedback errors" path="phoneNumber"/>
         </div>
 
-        <input class="btn" type="submit" value="회원가입">
+        <input class="btn btn-outline-secondary regist-btn w-100" type="submit" value="회원가입">
     </form:form>
 </div>
 </body>
