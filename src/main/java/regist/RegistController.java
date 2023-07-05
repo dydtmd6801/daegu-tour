@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/regist")
@@ -53,18 +55,25 @@ public class RegistController {
         if(errors.hasErrors()) {
             return "/regist/step2";
         }
-        if(!registDto.getPassword().equals(registDto.getConfirmPassword())){
-            errors.rejectValue("confirmPassword", "notMatchPassword");
-            return "/regist/step2";
-        }
         try {
-            if(!session.getAttribute("duplicate").equals("no")) {
-                errors.rejectValue("userId", "duplicateUserId");
-                session.removeAttribute("duplicate");
-                return "/regist/step2";
+            Map<String, String> map = (Map<String, String>) session.getAttribute("duplicate");
+            for(Map.Entry<String, String> state : map.entrySet()) {
+                if(!state.getKey().equals("no")) {
+                    errors.rejectValue("userId", "duplicateUserId");
+                    session.removeAttribute("duplicate");
+                    return "/regist/step2";
+                }
+                if(!state.getValue().equals(registDto.getUserId())) {
+                    errors.rejectValue("userId", "checkDuplication");
+                    return "/regist/step2";
+                }
             }
         } catch (NullPointerException e) {
             errors.rejectValue("userId", "checkDuplication");
+            return "/regist/step2";
+        }
+        if(!registDto.getPassword().equals(registDto.getConfirmPassword())){
+            errors.rejectValue("confirmPassword", "notMatchPassword");
             return "/regist/step2";
         }
         registService.join(registDto);
@@ -76,16 +85,20 @@ public class RegistController {
     @PostMapping("/checkId")
     public String checkId(HttpServletRequest request, HttpSession session) {
         String id = request.getParameter("id");
+        HashMap<String, String> map = new HashMap<>();
         if(id.isEmpty() || id.isBlank()) {
-            session.setAttribute("duplicate", "other");
+            map.put("other",id);
+            session.setAttribute("duplicate", map);
             return "other";
         }
         try {
             registService.checkDuplication(id);
-            session.setAttribute("duplicate","no");
+            map.put("no",id);
+            session.setAttribute("duplicate",map);
             return "success";
         } catch (DuplicateMemberException e) {
-            session.setAttribute("duplicate","yes");
+            map.put("yes",id);
+            session.setAttribute("duplicate",map);
             return "fail";
         }
     }
