@@ -2,12 +2,15 @@ let userId = document.getElementById("userId");
 let checkBtn = document.getElementById("checkBtn");
 let result = document.getElementById("result");
 
+let userIdValue = ""
+
 checkBtn.style.height = userId.offsetHeight + "px";
 
 const checkDuplication = () => {
+    userIdValue = userId.value;
     $.ajax({
         url: "/regist/checkId",
-        data: {"id": userId.value},
+        data: {"id": userIdValue},
         type: "POST",
         success: function (data) {
             if (data === "success") {
@@ -27,4 +30,12 @@ const checkDuplication = () => {
     });
 }
 
+const changeUserIdValue = () => {
+    if (userIdValue !== userId.value) {
+        result.innerHTML = "";
+    }
+}
+
 checkBtn.addEventListener("click", checkDuplication);
+userId.addEventListener("keydown", changeUserIdValue);
+userId.addEventListener("keyup", changeUserIdValue);
