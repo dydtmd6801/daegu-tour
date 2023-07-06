@@ -25,6 +25,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 <div class="m-auto mt-5 w-25 d-flex flex-column align-items-center">
     <h1 class="display-5 mb-5">회원가입</h1>
     <form:form action="step3" class="needs-validation w-100" method="post" modelAttribute="registDto" novalidate="false">

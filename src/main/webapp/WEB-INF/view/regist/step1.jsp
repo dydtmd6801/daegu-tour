@@ -15,6 +15,7 @@
     <script defer src="../../../static/js/checkValidation.js"></script>
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 <div class="m-auto mt-5 w-25 d-flex flex-column align-items-center">
     <h1 class="display-5 mb-5">회원가입</h1>
     <label class="form-label w-100">개인정보활용동의<textarea class="form-control" rows="10" readonly>...</textarea></label>

@@ -12,6 +12,7 @@
     <title>step3</title>
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 <p>아이디 : ${registDto.userId}</p>
 <p>이름 : ${registDto.name}</p>
 <p>전화번호 : ${registDto.phoneNumber}</p>

@@ -15,17 +15,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 <h2>관광 리스트</h2>
-<div class="d-flex flex-wrap">
-<c:forEach items="${tourList}" var="tourList">
-    <div class="card" style="width: 18rem;">
-        <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
-        <div class="card-body">
-            <h5 class="card-title">${tourList.value.title}</h5>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="d-flex flex-wrap justify-content-center" style="margin: 0 5%">
+    <c:forEach items="${tourList}" var="tourList">
+        <div class="card" style="width: 23%; margin: 1%;">
+            <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
+            <div class="card-body">
+                <h5 class="card-title">${tourList.value.title}</h5>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
         </div>
-    </div>
-</c:forEach>
+    </c:forEach>
 </div>
 </body>
 </html>
