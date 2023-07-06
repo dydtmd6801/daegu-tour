@@ -21,7 +21,7 @@
 <body>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/index">대구의 눈과 입</a>
+        <a class="navbar-brand fw-bold fs-4" href="/index">대구의 눈과 입</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,16 +29,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/tour">관광지</a>
+                    <a class="nav-link fs-6" href="/tour">관광지</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">음식점</a>
+                    <a class="nav-link fs-6" href="#">음식점</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <c:if test="${empty AuthInfo}">
-                    <a class="nav-link" href="/login">로그인</a>
-                    <a class="nav-link" href="/regist">회원가입</a>
+                    <a class="nav-link fs-6" href="/login">로그인</a>
+                    <a class="nav-link fs-6" href="/regist">회원가입</a>
                 </c:if>
                 <c:if test="${!empty AuthInfo}">
                     <p>${AuthInfo.userName}님, 환영합니다.</p>

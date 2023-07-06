@@ -17,9 +17,9 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <h2>관광 리스트</h2>
-<div class="d-flex flex-wrap justify-content-center" style="margin: 0 5%">
+<div class="d-flex flex-wrap justify-content-center">
     <c:forEach items="${tourList}" var="tourList">
-        <div class="card" style="width: 23%; margin: 1%;">
+        <div class="card" style="width: 18rem; margin: 1rem;">
             <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
             <div class="card-body">
                 <h5 class="card-title">${tourList.value.title}</h5>
