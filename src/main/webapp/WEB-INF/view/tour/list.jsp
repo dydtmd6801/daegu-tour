@@ -10,12 +10,22 @@
 <html>
 <head>
     <title>TourList</title>
+    <link rel="stylesheet" href="../../../static/css/font.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
 <h2>관광 리스트</h2>
+<div class="d-flex flex-wrap">
 <c:forEach items="${tourList}" var="tourList">
-    <img style="width: 20px; height: 20px; object-fit: cover" src="${tourList.value.thumbnailImage}"/>
-    ${tourList.value.title}
+    <div class="card" style="width: 18rem;">
+        <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
+        <div class="card-body">
+            <h5 class="card-title">${tourList.value.title}</h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 </c:forEach>
+</div>
 </body>
 </html>
