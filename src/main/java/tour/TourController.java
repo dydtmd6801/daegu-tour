@@ -15,12 +15,16 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.HashMap;
+
 @Controller
 @RequestMapping("/tour")
 public class TourController {
 
     @Value("${dataPortal-API-KEY}")
     private String serviceKey;
+
+    private HashMap<Integer, TourListDto> tourList = new HashMap<>();
 
     @GetMapping
     public String showDefault() {
@@ -33,7 +37,7 @@ public class TourController {
         String baseUrl = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1";
 
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(baseUrl)
-                .queryParam("numOfRows","20")
+                .queryParam("numOfRows","300")
                 .queryParam("pageNo","1")
                 .queryParam("MobileOS","etc")
                 .queryParam("MobileApp","test")
@@ -60,13 +64,21 @@ public class TourController {
             JSONObject body = (JSONObject) responseData.get("body");
             JSONObject items = (JSONObject) body.get("items");
             JSONArray item = (JSONArray) items.get("item");
-            for (Object tourItem : item) {
-
+            for(int i = 0; i < item.size(); i++){
+                JSONObject tourData = (JSONObject) item.get(i);
+                TourListDto tourListDto = new TourListDto();
+                if (tourData.get("firstimage").equals("")) {
+                    continue;
+                }
+                tourListDto.setThumbnailImage(String.valueOf(tourData.get("firstimage")));
+                tourListDto.setContentId(String.valueOf(tourData.get("contentid")));
+                tourListDto.setTitle(String.valueOf(tourData.get("title")));
+                tourList.put(i,tourListDto);
             }
+            model.addAttribute("tourList", tourList);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return "/tour/list";
     }
 }

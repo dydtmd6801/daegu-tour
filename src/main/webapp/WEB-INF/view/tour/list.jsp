@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: dydtm
@@ -12,5 +13,9 @@
 </head>
 <body>
 <h2>관광 리스트</h2>
+<c:forEach items="${tourList}" var="tourList">
+    <img style="width: 20px; height: 20px; object-fit: cover" src="${tourList.value.thumbnailImage}"/>
+    ${tourList.value.title}
+</c:forEach>
 </body>
 </html>
