@@ -31,6 +31,32 @@ public class TourController {
         return "redirect:/tour/list";
     }
 
+    private ResponseEntity<String> apiCall(UriComponents uriComponents) {
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(5000);
+
+        RestTemplate template = new RestTemplate(factory);
+
+        ResponseEntity<String> response = template.getForEntity(uriComponents.toUriString(), String.class);
+
+        return response;
+    }
+
+    private JSONArray jsonParsing(ResponseEntity<String> response) {
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response.getBody());
+            JSONObject responseData = (JSONObject) object.get("response");
+            JSONObject body = (JSONObject) responseData.get("body");
+            JSONObject items = (JSONObject) body.get("items");
+            JSONArray item = (JSONArray) items.get("item");
+            return item;
+        } catch (ParseException e) {
+            throw new NullPointerException();
+        }
+    }
+
     @GetMapping("/list")
     public String list(Model model) {
 
@@ -49,37 +75,23 @@ public class TourController {
                 .queryParam("serviceKey", serviceKey)
                 .build(false);
 
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectTimeout(5000);
-        factory.setReadTimeout(5000);
+        ResponseEntity<String> response = apiCall(uriComponents);
 
-        RestTemplate template = new RestTemplate(factory);
+        JSONArray item = jsonParsing(response);
 
-        ResponseEntity<String> response = template.getForEntity(uriComponents.toUriString(), String.class);
-
-        JSONParser parser = new JSONParser();
-        try {
-            JSONObject object = (JSONObject) parser.parse(response.getBody());
-            JSONObject responseData = (JSONObject) object.get("response");
-            JSONObject body = (JSONObject) responseData.get("body");
-            JSONObject items = (JSONObject) body.get("items");
-            JSONArray item = (JSONArray) items.get("item");
-            for(int i = 0; i < item.size(); i++){
-                JSONObject tourData = (JSONObject) item.get(i);
-                TourListDto tourListDto = new TourListDto();
-                if (tourData.get("firstimage").equals("")) {
-                    continue;
-                }
-                tourListDto.setThumbnailImage(String.valueOf(tourData.get("firstimage")));
-                tourListDto.setContentId(String.valueOf(tourData.get("contentid")));
-                tourListDto.setTitle(String.valueOf(tourData.get("title")));
-                tourListDto.setAddress(String.valueOf(tourData.get("addr1")));
-                tourList.put(i,tourListDto);
+        for(int i = 0; i < item.size(); i++){
+            JSONObject tourData = (JSONObject) item.get(i);
+            TourListDto tourListDto = new TourListDto();
+            if (tourData.get("firstimage").equals("")) {
+                continue;
             }
-            model.addAttribute("tourList", tourList);
-        } catch (ParseException e) {
-            e.printStackTrace();
+            tourListDto.setThumbnailImage(String.valueOf(tourData.get("firstimage")));
+            tourListDto.setContentId(String.valueOf(tourData.get("contentid")));
+            tourListDto.setTitle(String.valueOf(tourData.get("title")));
+            tourListDto.setAddress(String.valueOf(tourData.get("addr1")));
+            tourList.put(i,tourListDto);
         }
+        model.addAttribute("tourList", tourList);
         return "/tour/list";
     }
 }
