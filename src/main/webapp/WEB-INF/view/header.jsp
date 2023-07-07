@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>header</title>
-    <link rel="stylesheet" href="static/css/font.css">
-    <link rel="stylesheet" href="static/css/navBar.css">
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <link rel="stylesheet" href="../../static/css/navBar.css">
     <style>
         .navbar{
             background-color: #fff;
