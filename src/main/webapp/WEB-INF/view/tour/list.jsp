@@ -16,13 +16,13 @@
     <script defer src="../../../static/js/checkboxFilter.js"></script>
     <style>
         .gugun {
-            margin: 0 1rem;
+            margin: 1rem;
         }
     </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h2>관광 리스트</h2>
+<h2 class="text-center mb-5">관광지 목록</h2>
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-between">
         <label class="gugun btn btn-outline-secondary btn-sm" for="dalseo">달서구</label>
@@ -53,6 +53,7 @@
             <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
             <div class="card-body">
                 <h5 class="card-title">${tourList.value.title}</h5>
+                <p class="card-text small">${tourList.value.address}</p>
                 <a href="#" class="btn btn-primary">상세보기</a>
             </div>
         </div>

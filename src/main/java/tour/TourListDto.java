@@ -4,6 +4,15 @@ public class TourListDto {
     private String thumbnailImage;
     private String contentId;
     private String title;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getThumbnailImage() {
         return thumbnailImage;

@@ -73,6 +73,7 @@ public class TourController {
                 tourListDto.setThumbnailImage(String.valueOf(tourData.get("firstimage")));
                 tourListDto.setContentId(String.valueOf(tourData.get("contentid")));
                 tourListDto.setTitle(String.valueOf(tourData.get("title")));
+                tourListDto.setAddress(String.valueOf(tourData.get("addr1")));
                 tourList.put(i,tourListDto);
             }
             model.addAttribute("tourList", tourList);
