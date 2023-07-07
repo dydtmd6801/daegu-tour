@@ -7,9 +7,11 @@ filters.forEach(filter => {
         for(let i = 0; i < filters.length; i++) {
             if(filters[i].checked) {
                 filterStr += filters[i].id + ".";
-                gugun[i].style.backgroundColor="#f00";
+                gugun[i].style.backgroundColor="#6c757d";
+                gugun[i].style.color="#ffffff";
             } else {
-                gugun[i].style.backgroundColor="#0f0";
+                gugun[i].style.removeProperty("color");
+                gugun[i].style.removeProperty("background-color");
             }
         }
         console.log(filterStr);

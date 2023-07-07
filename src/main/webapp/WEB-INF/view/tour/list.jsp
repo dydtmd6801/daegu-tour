@@ -14,21 +14,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script defer src="../../../static/js/checkboxFilter.js"></script>
+    <style>
+        .gugun {
+            margin: 0 1rem;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <h2>관광 리스트</h2>
-<div>
-    <div>
-        <label class="gugun" for="dalseo">달서구</label>
-        <label class="gugun" for="buk" >북구</label>
-        <label class="gugun" for="susung">수성구</label>
-        <label class="gugun" for="dong">동구</label>
-        <label class="gugun" for="dalsung">달성군</label>
-        <label class="gugun" for="seo">서구</label>
-        <label class="gugun" for="nam">남구</label>
-        <label class="gugun" for="jung">중구</label>
-        <label class="gugun" for="gunwi">군위군</label>
+<div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-between">
+        <label class="gugun btn btn-outline-secondary btn-sm" for="dalseo">달서구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="buk" >북구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="susung">수성구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="dong">동구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="dalsung">달성군</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="seo">서구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="nam">남구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="jung">중구</label>
+        <label class="gugun btn btn-outline-secondary btn-sm" for="gunwi">군위군</label>
     </div>
     <div style="display: none;">
         <input type="checkbox" class="filter" id="dalseo"/>
@@ -48,7 +53,7 @@
             <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
             <div class="card-body">
                 <h5 class="card-title">${tourList.value.title}</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">상세보기</a>
             </div>
         </div>
     </c:forEach>
