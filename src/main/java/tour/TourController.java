@@ -89,7 +89,11 @@ public class TourController {
             tourListDto.setThumbnailImage(String.valueOf(tourData.get("firstimage")));
             tourListDto.setContentId(String.valueOf(tourData.get("contentid")));
             tourListDto.setTitle(String.valueOf(tourData.get("title")));
-            tourListDto.setAddress(String.valueOf(tourData.get("addr1")));
+            String address = String.valueOf(tourData.get("addr1"));
+            if (address.contains("대구 ")) {
+                address = address.replace("대구","대구광역시");
+            }
+            tourListDto.setAddress(address);
             tourList.put(tourListDto.getContentId(), tourListDto);
         }
         model.addAttribute("tourList", tourList);
