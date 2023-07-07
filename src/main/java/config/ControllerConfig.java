@@ -1,6 +1,7 @@
 package config;
 
 import dao.MemberDao;
+import index.IndexController;
 import login.LoginController;
 import login.LoginService;
 import org.springframework.context.annotation.Bean;
@@ -43,5 +44,10 @@ public class ControllerConfig {
     @Bean
     public TourController tourController() {
         return new TourController();
+    }
+
+    @Bean
+    public IndexController indexController() {
+        return new IndexController();
     }
 }
