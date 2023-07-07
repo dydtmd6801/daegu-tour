@@ -50,7 +50,7 @@
 <div class="d-flex flex-wrap justify-content-center">
     <c:forEach items="${tourList}" var="tourList">
         <div class="card" style="width: 18rem; margin: 1rem;">
-            <img src="${tourList.value.thumbnailImage}" class="card-img-top" alt="..."/>
+            <img src="${tourList.value.thumbnailImage}" style="width:100%; height: 12rem" class="card-img-top object-fit-cover" alt="..."/>
             <div class="card-body">
                 <h5 class="card-title">${tourList.value.title}</h5>
                 <p class="card-text small">${tourList.value.address}</p>
