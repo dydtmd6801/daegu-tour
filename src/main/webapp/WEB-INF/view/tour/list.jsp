@@ -54,7 +54,7 @@
             <div class="card-body">
                 <h5 class="card-title">${tourList.value.title}</h5>
                 <p class="card-text small">${tourList.value.address}</p>
-                <a href="#" class="btn btn-primary">상세보기</a>
+                <a href="/tour/detail?tourId=${tourList.value.contentId}" class="btn btn-primary">상세보기</a>
             </div>
         </div>
     </c:forEach>
