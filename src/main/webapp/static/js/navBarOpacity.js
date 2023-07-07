@@ -6,7 +6,7 @@ navBar.addEventListener("mouseover", () => {
 })
 
 navBar.addEventListener("mouseout", () => {
-    changeOpacity(opacity-opacity);
+    navBar.style.removeProperty("background-color");
 })
 
 const changeOpacity = (opacity) => {
