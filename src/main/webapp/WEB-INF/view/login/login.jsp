@@ -42,6 +42,11 @@
         <input type="submit" class="btn btn-outline-secondary w-100 loginBtn" value="로그인">
     </form:form>
     <p class="mt-3">회원이 아니신가요? <a class="btn-link" href="/regist">회원가입</a></p>
+    <div class="m-auto w-50" id="naverLogin">
+        <a href="${url}">
+            <img src="../../../static/img/btnG_완성형.png" class="w-100"/>
+        </a>
+    </div>
 </div>
 </body>
 </html>
