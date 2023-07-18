@@ -165,4 +165,19 @@ public class TourController {
 
         return "/tour/detail";
     }
+
+    @GetMapping(value = "/tourFilter", produces = "application/text; charset=UTF-8")
+    public String tourFilter(@RequestParam("filter") String filterStr, Model model) {
+        String[] filter = filterStr.split("\\.");
+        HashMap<String, TourListDto> tourDetailList = new HashMap<>();
+        for(TourListDto tourListDto : tourList.values()) {
+            for(String area : filter) {
+                if(tourListDto.getAddress().contains(" " + area)) {
+                    tourDetailList.put(tourListDto.getContentId(), tourListDto);
+                }
+            }
+        }
+        model.addAttribute("tourList", tourDetailList);
+        return "/tour/filterList";
+    }
 }

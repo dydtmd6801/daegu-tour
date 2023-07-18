@@ -14,7 +14,18 @@ filters.forEach(filter => {
                 gugun[i].style.removeProperty("background-color");
             }
         }
-        console.log(filterStr);
+        $.ajax({
+            url: "/tour/tourFilter",
+            data: {"filter": filterStr},
+            type: "GET",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success: function (data) {
+                $('#tourList').html(data);
+            },
+            error: function () {
+                console.log("에러");
+            }
+        });
         filterStr = "";
     })
 });
