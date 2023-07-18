@@ -44,25 +44,29 @@
         </div>
     </div>
 </nav>
+<div style="position: absolute; right: 8%; bottom: 20%; z-index: 5;" class="d-flex flex-column align-items-end">
+    <h1 class="display-2 text-white fw-bold">대구 관광의</h1>
+    <h1 class="display-2 text-white fw-bold">모든 것</h1>
+</div>
 <div id="slider">
     <ul class="slides">
         <li class="slide">
-            <img src="https://cdn.pixabay.com/photo/2018/11/19/15/06/machang-bridge-3825439_1280.jpg">
+            <img src="https://cdn.pixabay.com/photo/2018/09/02/07/07/south-korea-3648252_1280.jpg">
         </li>
         <li class="slide">
-            <img src="https://cdn.pixabay.com/photo/2020/06/11/11/52/korean-folk-village-5286449_1280.jpg">
+            <img src="https://cdn.pixabay.com/photo/2019/12/17/01/37/korea-4700537_1280.jpg">
         </li>
         <li class="slide">
-            <img src="https://cdn.pixabay.com/photo/2017/01/03/20/25/the-landscape-1950544_1280.jpg">
+            <img src="https://cdn.pixabay.com/photo/2018/11/26/02/00/korea-3838656_1280.jpg">
         </li>
         <li class="slide">
-            <img src="https://cdn.pixabay.com/photo/2018/08/23/03/26/south-korea-3625168_1280.jpg">
+            <img src="https://live.staticflickr.com/5493/11726526334_fc8a4fbfe3_b.jpg">
         </li>
         <li class="slide">
             <img src="https://cdn.pixabay.com/photo/2020/02/27/15/00/city-4884924_1280.jpg">
         </li>
         <li class="slide">
-            <img src="https://cdn.pixabay.com/photo/2018/11/19/15/06/machang-bridge-3825439_1280.jpg">
+            <img src="https://cdn.pixabay.com/photo/2018/09/02/07/07/south-korea-3648252_1280.jpg">
         </li>
     </ul>
 </div>

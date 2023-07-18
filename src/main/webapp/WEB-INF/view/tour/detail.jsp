@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h2 class="text-center mb-5">상세정보</h2>
+<h2 class="text-center my-5">상세정보</h2>
 <div class="d-flex flex-column mx-auto" style="width: 58rem">
     <div class="card mb-3 w-100">
         <div class="row g-0">
