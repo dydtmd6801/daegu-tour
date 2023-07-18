@@ -4,6 +4,7 @@ import dao.MemberDao;
 import index.IndexController;
 import login.LoginController;
 import login.LoginService;
+import login.NaverLoginBO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -20,6 +21,11 @@ public class ControllerConfig {
     @Bean
     public MemberDao memberDao() {
         return new MemberDao(dbConfig.dataSource());
+    }
+
+    @Bean
+    public NaverLoginBO naverLoginBO() {
+        return new NaverLoginBO();
     }
 
     @Bean
