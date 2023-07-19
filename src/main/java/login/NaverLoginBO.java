@@ -14,21 +14,24 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class NaverLoginBO {
-
-    @Value("${naver-CLIENT-ID}")
-    private static String VALUE_CLIENT_ID;
-
-    @Value("${naver-CLIENT-SECRET}")
-    private static String VALUE_CLIENT_SECRET;
-
     /*
     client_id, client_secret: 애플리 케이션 등록 후 받은 개인 키
     redirect_uri: 네이버 로그인 인증의 결과를 전달받을 콜백 url
     session_state: 애플리케이션이 생성한 상태 토큰
      */
-    private final static String CLIENT_ID = VALUE_CLIENT_ID;
-    private final static String CLIENT_SECRET = VALUE_CLIENT_SECRET;
-    private final static String REDIRECT_URI = "/index";
+    private static String CLIENT_ID;
+    private static String CLIENT_SECRET;
+
+    @Value("${naver-CLIENT-ID}")
+    private void setValueClientId(String clientId) {
+        CLIENT_ID = clientId;
+    }
+
+    @Value("${naver-CLIENT-SECRET}")
+    private void setValueClientSecret(String clientSecret) {
+        CLIENT_SECRET = clientSecret;
+    }
+    private final static String REDIRECT_URI = "http://localhost:8080/index";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
