@@ -31,7 +31,7 @@ public class NaverLoginBO {
     private void setValueClientSecret(String clientSecret) {
         CLIENT_SECRET = clientSecret;
     }
-    private final static String REDIRECT_URI = "http://localhost:8080/index";
+    private final static String REDIRECT_URI = "http://localhost:8080/login/callback";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
@@ -95,6 +95,7 @@ public class NaverLoginBO {
                 .build(NaverLoginApi.instance());
 
         OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+        oauthService.signRequest(oauthToken, request);
         Response response = request.send();
         return response.getBody();
     }
