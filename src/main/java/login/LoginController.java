@@ -3,6 +3,9 @@ package login;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import exception.MemberNotFoundException;
 import exception.NotMatchPasswordException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,14 +67,26 @@ public class LoginController {
     }
 
     @RequestMapping(value="/callback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
         OAuth2AccessToken oauthToken;
 
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
 
         apiResult = naverLoginBO.getUserProfile(oauthToken);
 
-        model.addAttribute("result", apiResult);
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObj;
+
+        jsonObj = (JSONObject) jsonParser.parse(apiResult);
+        JSONObject responseObj = (JSONObject) jsonObj.get("response");
+
+        AuthInfo authInfo = new AuthInfo(
+                (String) responseObj.get("naver"),
+                (String) responseObj.get("name"),
+                (String) responseObj.get("mobile")
+        );
+
+        session.setAttribute("AuthInfo", authInfo);
 
         return "redirect:/index";
     }
