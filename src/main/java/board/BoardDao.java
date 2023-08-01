@@ -56,4 +56,17 @@ public class BoardDao {
         jdbcTemplate.execute("SET @COUNT = 0");
         jdbcTemplate.execute("UPDATE BOARD SET ID = @COUNT:=@COUNT + 1");
     }
+
+    public List<BoardDto> searchAll() {
+        List<BoardDto> board = jdbcTemplate.query("select * from board",
+                (rs, numRow) -> {
+                    BoardDto boardDto = new BoardDto();
+                    boardDto.setTitle(rs.getString("title"));
+                    boardDto.setWriter(rs.getString("writer"));
+                    boardDto.setContent(rs.getString("content"));
+                    boardDto.setDate(rs.getString("date"));
+                    return boardDto;
+                });
+        return board;
+    }
 }
