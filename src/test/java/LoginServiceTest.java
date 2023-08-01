@@ -1,14 +1,12 @@
 import config.DBConfig;
-import dao.MemberDao;
+import regist.MemberDao;
 import exception.MemberNotFoundException;
 import exception.NotMatchPasswordException;
 import login.LoginDto;
 import login.LoginService;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import regist.RegistDto;
-import regist.RegistService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

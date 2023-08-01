@@ -1,6 +1,6 @@
 package login;
 
-import dao.MemberDao;
+import regist.MemberDao;
 import exception.MemberNotFoundException;
 import exception.NotMatchPasswordException;
 import regist.RegistDto;

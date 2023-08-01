@@ -1,6 +1,5 @@
 package regist;
 
-import dao.MemberDao;
 import exception.DuplicateMemberException;
 
 public class RegistService {

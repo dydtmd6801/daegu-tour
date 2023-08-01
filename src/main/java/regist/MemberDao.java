@@ -1,4 +1,4 @@
-package dao;
+package regist;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;

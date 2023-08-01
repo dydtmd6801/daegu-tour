@@ -1,6 +1,6 @@
 package config;
 
-import dao.MemberDao;
+import regist.MemberDao;
 import index.IndexController;
 import login.LoginController;
 import login.LoginService;

@@ -1,5 +1,5 @@
 import config.DBConfig;
-import dao.MemberDao;
+import regist.MemberDao;
 import exception.DuplicateMemberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
