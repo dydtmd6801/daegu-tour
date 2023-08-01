@@ -24,7 +24,7 @@ public class BoardDao {
                 new PreparedStatementCreator() {
                     @Override
                     public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                        PreparedStatement pstmt = con.prepareStatement("insert into BOARD (title, writer, content, date) values (?,?,?,?)");
+                        PreparedStatement pstmt = con.prepareStatement("insert into BOARD (title, writer, content, date) values (?,?,?,?)", new String[]{"ID"});
                         pstmt.setString(1, boardDto.getTitle());
                         pstmt.setString(2, boardDto.getWriter());
                         pstmt.setString(3, boardDto.getContent());
