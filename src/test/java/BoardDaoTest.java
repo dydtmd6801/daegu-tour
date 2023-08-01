@@ -36,4 +36,9 @@ public class BoardDaoTest {
 
         assertThat(result.size()).isEqualTo(1);
     }
+
+    @Test
+    public void resetAutoIncrement() {
+        boardDao.resetAutoIncrement();
+    }
 }
