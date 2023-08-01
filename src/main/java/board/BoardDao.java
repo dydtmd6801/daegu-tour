@@ -50,4 +50,10 @@ public class BoardDao {
                 }, index);
         return result.isEmpty() ? null : result;
     }
+
+    public void resetAutoIncrement() {
+        jdbcTemplate.execute("ALTER TABLE BOARD AUTO_INCREMENT = 1");
+        jdbcTemplate.execute("SET @COUNT = 0");
+        jdbcTemplate.execute("UPDATE BOARD SET ID = @COUNT:=@COUNT + 1");
+    }
 }
