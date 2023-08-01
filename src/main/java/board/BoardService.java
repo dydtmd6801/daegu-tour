@@ -1,5 +1,7 @@
 package board;
 
+import java.util.List;
+
 public class BoardService {
 
     private BoardDao boardDao;
@@ -10,5 +12,10 @@ public class BoardService {
 
     public void write(BoardDto boardDto) throws NullPointerException {
         boardDao.insert(boardDto);
+    }
+
+    public List<BoardDto> listAll() {
+        List<BoardDto> results = boardDao.searchAll();
+        return results;
     }
 }
