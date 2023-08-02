@@ -1,5 +1,8 @@
 package config;
 
+import board.BoardController;
+import board.BoardDao;
+import board.BoardService;
 import regist.MemberDao;
 import index.IndexController;
 import login.LoginController;
@@ -24,6 +27,11 @@ public class ControllerConfig {
     }
 
     @Bean
+    public BoardDao boardDao() {
+        return new BoardDao(dbConfig.dataSource());
+    }
+
+    @Bean
     public NaverLoginBO naverLoginBO() {
         return new NaverLoginBO();
     }
@@ -31,6 +39,11 @@ public class ControllerConfig {
     @Bean
     public LoginService loginService() {
         return new LoginService(memberDao());
+    }
+
+    @Bean
+    public BoardService boardService() {
+        return new BoardService(boardDao());
     }
 
     @Bean
@@ -55,5 +68,12 @@ public class ControllerConfig {
     @Bean
     public IndexController indexController() {
         return new IndexController();
+    }
+
+    @Bean
+    public BoardController boardController() {
+        BoardController controller = new BoardController();
+        controller.setBoardService(boardService());
+        return controller;
     }
 }
