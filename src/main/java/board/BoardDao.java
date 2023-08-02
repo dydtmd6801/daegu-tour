@@ -58,7 +58,7 @@ public class BoardDao {
     }
 
     public List<BoardDto> searchAll() {
-        List<BoardDto> board = jdbcTemplate.query("select * from board",
+        List<BoardDto> board = jdbcTemplate.query("select * from board order by id desc",
                 (rs, numRow) -> {
                     BoardDto boardDto = new BoardDto();
                     boardDto.setTitle(rs.getString("title"));
