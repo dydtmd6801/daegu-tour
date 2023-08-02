@@ -31,6 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link fs-6" href="/tour">관광지</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-6" href="/board">공지사항</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <c:if test="${empty AuthInfo}">
@@ -38,7 +41,8 @@
                     <a class="nav-link fs-6" href="/regist">회원가입</a>
                 </c:if>
                 <c:if test="${!empty AuthInfo}">
-                    <p>${AuthInfo.userName}님, 환영합니다.</p>
+                    <span class="nav-link fs-6"><strong>${AuthInfo.userName}님</strong>, 환영합니다!</span>
+                    <a class="nav-link fs-6" href="/logout">로그아웃</a>
                 </c:if>
             </ul>
         </div>
