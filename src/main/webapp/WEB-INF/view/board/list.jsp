@@ -34,7 +34,7 @@
     <c:forEach items="${boards}" var="board" varStatus="status">
         <tr>
             <td>${fn:length(boards) - status.index}</td>
-            <td>${board.title}</td>
+            <td><a class="text-decoration-none text-dark" href="/board/detail?id=${board.id}">${board.title}</a></td>
             <td>${board.writer}</td>
             <td>
                 <fmt:parseDate value="${board.date}" var="date" pattern="yyyy-MM-dd"/>
