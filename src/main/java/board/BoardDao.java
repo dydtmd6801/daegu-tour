@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,15 +40,7 @@ public class BoardDao {
 
     public List<BoardDto> searchById(int index) {
         List<BoardDto> result = jdbcTemplate.query("select * from board where id=?",
-                (rs, row) -> {
-                    BoardDto boardDto = new BoardDto();
-                    boardDto.setId(rs.getLong("id"));
-                    boardDto.setTitle(rs.getString("title"));
-                    boardDto.setWriter(rs.getString("writer"));
-                    boardDto.setContent(rs.getString("content"));
-                    boardDto.setDate(rs.getString("date"));
-                    return boardDto;
-                }, index);
+                (ResultSet rs, int numRow) -> resultBoardDto(rs), index);
         return result.isEmpty() ? null : result;
     }
 
@@ -59,14 +52,17 @@ public class BoardDao {
 
     public List<BoardDto> searchAll() {
         List<BoardDto> board = jdbcTemplate.query("select * from board order by id desc",
-                (rs, numRow) -> {
-                    BoardDto boardDto = new BoardDto();
-                    boardDto.setTitle(rs.getString("title"));
-                    boardDto.setWriter(rs.getString("writer"));
-                    boardDto.setContent(rs.getString("content"));
-                    boardDto.setDate(rs.getString("date"));
-                    return boardDto;
-                });
+                (ResultSet rs, int numRow) -> resultBoardDto(rs));
         return board;
+    }
+
+    private BoardDto resultBoardDto(ResultSet rs) throws SQLException {
+        BoardDto boardDto = new BoardDto();
+        boardDto.setId(rs.getLong("id"));
+        boardDto.setTitle(rs.getString("title"));
+        boardDto.setWriter(rs.getString("writer"));
+        boardDto.setContent(rs.getString("content"));
+        boardDto.setDate(rs.getString("date"));
+        return boardDto;
     }
 }
