@@ -19,6 +19,7 @@ public class BoardController {
 
     @GetMapping
     public String board(Model model) {
+        boardService.resetAutoIncrement();
         List<BoardDto> boards = boardService.listAll();
         model.addAttribute("boards", boards);
         return "/board/list";

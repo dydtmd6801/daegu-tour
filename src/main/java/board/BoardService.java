@@ -18,4 +18,8 @@ public class BoardService {
         List<BoardDto> results = boardDao.searchAll();
         return results;
     }
+
+    public void resetAutoIncrement() {
+        boardDao.resetAutoIncrement();
+    }
 }
