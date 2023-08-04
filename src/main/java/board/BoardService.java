@@ -22,4 +22,12 @@ public class BoardService {
     public void resetAutoIncrement() {
         boardDao.resetAutoIncrement();
     }
+
+    public BoardDto searchDetail(long id) {
+        List<BoardDto> result = boardDao.searchById(id);
+        if(result.isEmpty()) {
+            throw new NullPointerException();
+        }
+        return result.get(0);
+    }
 }
