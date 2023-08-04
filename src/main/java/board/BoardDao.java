@@ -38,7 +38,7 @@ public class BoardDao {
         boardDto.setId(keyValue.longValue());
     }
 
-    public List<BoardDto> searchById(int index) {
+    public List<BoardDto> searchById(long index) {
         List<BoardDto> result = jdbcTemplate.query("select * from board where id=?",
                 (ResultSet rs, int numRow) -> resultBoardDto(rs), index);
         return result.isEmpty() ? null : result;
