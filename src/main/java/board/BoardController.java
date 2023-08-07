@@ -32,4 +32,9 @@ public class BoardController {
         model.addAttribute("boardDetail", boardDetail);
         return "/board/detail";
     }
+
+    @GetMapping("/write")
+    public String write() {
+        return "/board/write";
+    }
 }
