@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="../header.jsp" />
+<jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">공지사항</h2>
 <table class="table mx-auto" style="max-width: 992px; text-align: center">
     <thead>
@@ -44,5 +44,8 @@
     </c:forEach>
     </tbody>
 </table>
+<div class="d-flex justify-content-end mx-auto" style="max-width: 992px;">
+    <a class="btn btn-outline-secondary" href="/board/write">글쓰기</a>
+</div>
 </body>
 </html>
