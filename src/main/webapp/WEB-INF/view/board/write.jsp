@@ -39,7 +39,7 @@
     </table>
     <div class="text-center">
         <a href="/board" class="btn btn-outline-secondary">취소</a>
-        <a href="/board/write" class="btn btn-outline-secondary">완료</a>
+        <button class="btn btn-outline-secondary">완료</button>
     </div>
 </form:form>
 </body>
