@@ -1,5 +1,6 @@
 package board;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BoardService {
@@ -11,6 +12,7 @@ public class BoardService {
     }
 
     public void write(BoardDto boardDto) throws NullPointerException {
+        boardDto.setDate(String.valueOf(LocalDateTime.now()));
         boardDao.insert(boardDto);
     }
 
