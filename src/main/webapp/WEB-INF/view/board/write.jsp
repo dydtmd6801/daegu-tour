@@ -25,15 +25,15 @@
 <form:form modelAttribute="boardDto">
     <table class="table mx-auto border-1 border-top">
         <tr>
-            <td class="p-3 text-end">제목</td>
+            <td class="p-3 text-end fw-semibold">제목</td>
             <td class="p-3"><form:input path="title" class="w-75"/></td>
         </tr>
         <tr>
-            <td class="p-3 text-end">작성자</td>
-            <td class="p-3">작성자<form:hidden path="writer"/></td>
+            <td class="p-3 text-end fw-semibold">작성자</td>
+            <td class="p-3">${AuthInfo.userName}<form:hidden path="writer" value="${AuthInfo.userName}"/></td>
         </tr>
         <tr>
-            <td class="p-3 text-end">내용</td>
+            <td class="p-3 text-end fw-semibold">내용</td>
             <td class="p-3 pb-5"><form:textarea path="content" class="w-75" cols="30"/></td>
         </tr>
     </table>
