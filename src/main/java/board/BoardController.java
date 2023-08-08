@@ -34,7 +34,7 @@ public class BoardController {
     }
 
     @GetMapping("/write")
-    public String write() {
+    public String write(BoardDto boardDto) {
         return "/board/write";
     }
 }
