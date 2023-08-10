@@ -20,6 +20,11 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
+<c:if test="${status eq 'notFoundInfo'}">
+    <script>
+        window.alert("로그인 후 사용해주세요.");
+    </script>
+</c:if>
 <h2 class="text-center my-5">공지사항</h2>
 <table class="table mx-auto" style="max-width: 992px; text-align: center">
     <thead>
