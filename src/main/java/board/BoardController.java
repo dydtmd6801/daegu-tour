@@ -22,8 +22,11 @@ public class BoardController {
     }
 
     @GetMapping
-    public String board(Model model) {
+    public String board(@RequestParam(required = false, defaultValue = "Y") String status, Model model) {
         boardService.resetAutoIncrement();
+        if(status.equals("N")) {
+            model.addAttribute("status","notFoundInfo");
+        }
         List<BoardDto> boards = boardService.listAll();
         model.addAttribute("boards", boards);
         return "/board/list";
@@ -38,8 +41,14 @@ public class BoardController {
 
     @GetMapping("/write")
     public String write(BoardDto boardDto, Model model, HttpSession session) {
-        model.addAttribute("AuthInfo", session.getAttribute("AuthInfo"));
-        return "/board/write";
+        AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
+        try {
+            authInfo.getUserName();
+            model.addAttribute("AuthInfo", authInfo);
+            return "/board/write";
+        } catch (NullPointerException NPE) {
+            return "redirect:/board?status=N";
+        }
     }
 
     @PostMapping("/write")
