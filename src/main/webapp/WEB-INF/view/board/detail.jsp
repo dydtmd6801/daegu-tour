@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: dydtm
@@ -24,8 +25,12 @@
     </div>
     <div class="p-3 border-1 border-dark-subtle border-bottom">${boardDetail.content}</div>
 </div>
-<div class="d-flex">
-    <a class="btn btn-outline-secondary mx-auto mt-3" href="/board">목록</a>
+<div class="text-center">
+    <c:if test="${auth eq 'Y'}">
+        <a class="btn btn-outline-secondary mt-3" href="/board">수정</a>
+        <a class="btn btn-outline-secondary mt-3" href="/board">삭제</a>
+    </c:if>
+    <a class="btn btn-outline-secondary mt-3" href="/board">목록</a>
 </div>
 </body>
 </html>
