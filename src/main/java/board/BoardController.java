@@ -33,10 +33,18 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public String showDetail(@RequestParam long id, Model model) {
+    public String showDetail(@RequestParam long id, Model model, HttpSession session) {
         BoardDto boardDetail = boardService.searchDetail(id);
-        model.addAttribute("boardDetail", boardDetail);
-        return "/board/detail";
+            AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
+            try {
+                if (boardDetail.getWriter().equals(authInfo.getUserName())) {
+                    model.addAttribute("auth", "Y");
+                }
+            } catch (NullPointerException e) {
+            } finally {
+                model.addAttribute("boardDetail", boardDetail);
+            return "/board/detail";
+        }
     }
 
     @GetMapping("/write")
