@@ -64,4 +64,9 @@ public class BoardController {
         boardService.write(boardDto);
         return "redirect:/board";
     }
+
+    @GetMapping("/modify")
+    public String modify() {
+        return "board/modify";
+    }
 }
