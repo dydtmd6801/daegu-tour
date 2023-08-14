@@ -34,7 +34,11 @@
         </tr>
         <tr>
             <td class="p-3 text-end fw-semibold">내용</td>
-            <td class="p-3 pb-5"><form:textarea path="content" class="w-75" cols="30"/></td>
+            <td class="p-3 pb-5"><form:textarea path="content" class="w-75" rows="8"/></td>
+        </tr>
+        <tr>
+            <td class="p-3 text-end fw-semibold">비밀번호</td>
+            <td class="p-3"><form:password path="password" class="w-75"/></td>
         </tr>
     </table>
     <div class="text-center">
