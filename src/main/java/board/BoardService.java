@@ -32,4 +32,8 @@ public class BoardService {
         }
         return result.get(0);
     }
+
+    public void removeBoard(long id) {
+        boardDao.remove(id);
+    }
 }

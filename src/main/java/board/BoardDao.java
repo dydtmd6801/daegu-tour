@@ -65,4 +65,8 @@ public class BoardDao {
         boardDto.setDate(rs.getString("date"));
         return boardDto;
     }
+
+    public void remove(long id) {
+        jdbcTemplate.update("delete from board where id=?",id);
+    }
 }
