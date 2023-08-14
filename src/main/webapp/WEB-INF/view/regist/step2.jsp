@@ -29,7 +29,7 @@
 <div class="m-auto mt-5 w-25 d-flex flex-column align-items-center">
     <h1 class="display-5 mb-5">회원가입</h1>
     <form:form action="step3" class="needs-validation w-100" method="post" modelAttribute="registDto" novalidate="false">
-        <div class="input-group w-100">
+        <div class="input-group mb-2 w-100">
             <div class="form-floating">
                 <form:input path="userId" class="form-control" id="userId" required="false" placeholder="아이디"/>
                 <label for="userId">아이디</label>
