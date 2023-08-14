@@ -7,6 +7,7 @@ public class BoardDto {
     private String writer;
     private String content;
     private String date;
+    private String password;
 
     public long getId() {
         return id;
@@ -46,5 +47,13 @@ public class BoardDto {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
