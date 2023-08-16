@@ -66,7 +66,10 @@ public class BoardController {
     }
 
     @GetMapping("/modify")
-    public String modify() {
+    public String modify(@RequestParam long id, Model model, HttpSession session, BoardDto boardDto) {
+        BoardDto modifyBoard = boardService.searchDetail(id);
+        model.addAttribute("modifyBoard", modifyBoard);
+        model.addAttribute("authInfo", session.getAttribute("AuthInfo"));
         return "board/modify";
     }
 }
