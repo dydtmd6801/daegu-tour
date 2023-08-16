@@ -72,4 +72,10 @@ public class BoardController {
         model.addAttribute("authInfo", session.getAttribute("AuthInfo"));
         return "board/modify";
     }
+
+    @PostMapping("/modify")
+    public String modify(BoardDto boardDto) {
+        boardService.updateBoard(boardDto);
+        return "redirect:/board/detail?id=" + boardDto.getId();
+    }
 }
