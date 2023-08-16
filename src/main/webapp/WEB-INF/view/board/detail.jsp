@@ -27,7 +27,7 @@
 </div>
 <div class="text-center">
     <c:if test="${auth eq 'Y'}">
-        <a class="btn btn-outline-secondary mt-3" href="/modify">수정</a>
+        <a class="btn btn-outline-secondary mt-3" href="/board/modify?id=${boardDetail.id}">수정</a>
     </c:if>
     <a class="btn btn-outline-secondary mt-3" href="/board">목록</a>
 </div>
