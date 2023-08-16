@@ -36,4 +36,8 @@ public class BoardService {
     public void removeBoard(long id) {
         boardDao.remove(id);
     }
+
+    public void updateBoard(BoardDto boardDto) {
+        boardDao.update(boardDto);
+    }
 }

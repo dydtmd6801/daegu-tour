@@ -70,4 +70,8 @@ public class BoardDao {
     public void remove(long id) {
         jdbcTemplate.update("delete from board where id=?",id);
     }
+
+    public void update(BoardDto boardDto) {
+        jdbcTemplate.update("update board set content = ? where id=?", boardDto.getContent(), boardDto.getId());
+    }
 }
