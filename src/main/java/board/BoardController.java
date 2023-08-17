@@ -3,11 +3,9 @@ package board;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -77,5 +75,22 @@ public class BoardController {
     public String modify(BoardDto boardDto) {
         boardService.updateBoard(boardDto);
         return "redirect:/board/detail?id=" + boardDto.getId();
+    }
+
+    @ResponseBody
+    @PostMapping("/remove")
+    public String remove(HttpServletRequest request) {
+        long id = Long.parseLong(request.getParameter("id"));
+        String password = request.getParameter("password");
+
+        System.out.println("id : " + id + ", password : " + password);
+
+        BoardDto removeBoard = boardService.searchDetail(id);
+        System.out.println("password : " + removeBoard.getPassword() + ", id : " + removeBoard.getTitle());
+        if(password.equals(removeBoard.getPassword())) {
+            boardService.removeBoard(id);
+            return "success";
+        }
+        return "fail";
     }
 }
