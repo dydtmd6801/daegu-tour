@@ -18,12 +18,15 @@
             border-spacing: 1rem;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script defer src="../../../static/js/removeBoard.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">공지사항</h2>
 <form:form modelAttribute="boardDto">
     <table class="table mx-auto border-1 border-top">
+        <input type="hidden" id="id" value="${modifyBoard.id}"/>
         <tr>
             <td class="p-3 text-end fw-semibold">제목</td>
             <td class="p-3">${modifyBoard.title}</td>
@@ -34,7 +37,7 @@
         </tr>
         <tr>
             <td class="p-3 text-end fw-semibold">내용</td>
-            <td class="p-3 pb-5"><form:textarea path="content" class="w-75" rows="8">${modifyBoard.content}</form:textarea></td>
+            <td class="p-3 pb-5"><form:textarea path="content" class="w-75" rows="8"/></td>
         </tr>
         <tr>
             <td class="p-3 text-end fw-semibold">비밀번호</td>
@@ -42,8 +45,8 @@
         </tr>
     </table>
     <div class="text-center">
-        <a href="/board" class="btn btn-outline-secondary">취소</a>
-        <a href="/board" class="btn btn-outline-secondary">삭제</a>
+        <a href="/board/detail?id=${modifyBoard.id}" class="btn btn-outline-secondary">취소</a>
+        <input type="button" id="removeBtn" class="btn btn-outline-secondary" value="삭제"/>
         <button class="btn btn-outline-secondary">완료</button>
     </div>
 </form:form>
