@@ -64,6 +64,7 @@ public class BoardDao {
         boardDto.setWriter(rs.getString("writer"));
         boardDto.setContent(rs.getString("content"));
         boardDto.setDate(rs.getString("date"));
+        boardDto.setPassword(rs.getString("password"));
         return boardDto;
     }
 
