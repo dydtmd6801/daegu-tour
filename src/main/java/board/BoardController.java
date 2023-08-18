@@ -72,9 +72,13 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modify(BoardDto boardDto) {
-        boardService.updateBoard(boardDto);
-        return "redirect:/board/detail?id=" + boardDto.getId();
+    public String modify(BoardDto boardDto, Model model) {
+        BoardDto modifyBoard = boardService.searchDetail(boardDto.getId());
+        if(boardDto.getPassword().equals(modifyBoard.getPassword())) {
+            boardService.updateBoard(boardDto);
+            return "redirect:/board/detail?id=" + boardDto.getId();
+        }
+        return "redirect:/board/modify?id=" + boardDto.getId();
     }
 
     @ResponseBody
