@@ -3,6 +3,8 @@ package board;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +60,11 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public String writeBoard(BoardDto boardDto) {
+    public String writeBoard(BoardDto boardDto, Errors errors) {
+        new BoardValidator().validate(boardDto, errors);
+        if (errors.hasErrors()) {
+            return "board/write";
+        }
         boardService.write(boardDto);
         return "redirect:/board";
     }
@@ -72,13 +78,18 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modify(BoardDto boardDto, Model model) {
-        BoardDto modifyBoard = boardService.searchDetail(boardDto.getId());
-        if(boardDto.getPassword().equals(modifyBoard.getPassword())) {
-            boardService.updateBoard(boardDto);
-            return "redirect:/board/detail?id=" + boardDto.getId();
+    public String modify(BoardDto boardDto, Model model, Errors errors) {
+        new BoardValidator().validate(boardDto, errors);
+        if (errors.hasErrors()) {
+            return "redirect:/board/modify?id=" + boardDto.getId();
         }
-        return "redirect:/board/modify?id=" + boardDto.getId();
+        BoardDto modifyBoard = boardService.searchDetail(boardDto.getId());
+        if(!boardDto.getPassword().equals(modifyBoard.getPassword())) {
+            errors.rejectValue("password","notMatchBoardPassword");
+            return "redirect:/board/modify?id=" + boardDto.getId();
+        }
+        boardService.updateBoard(boardDto);
+        return "redirect:/board/detail?id=" + boardDto.getId();
     }
 
     @ResponseBody
