@@ -17,16 +17,26 @@
             border-width: 1px;
             border-spacing: 1rem;
         }
+        .errors {
+            display: block;
+        }
     </style>
+    <script defer src="../../../static/js/checkValidation.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">공지사항</h2>
-<form:form modelAttribute="boardDto">
+<form:form modelAttribute="boardDto" novalidate="true" class="needs-validation">
     <table class="table mx-auto border-1 border-top">
         <tr>
             <td class="p-3 text-end fw-semibold">제목</td>
-            <td class="p-3"><form:input path="title" class="w-75"/></td>
+            <td class="p-3">
+                <form:input path="title" class="w-75 form-control" required="false"/>
+                <div class="invalid-feedback">
+                    제목을 입력해주세요.
+                </div>
+                <form:errors class="invalid-feedback errors" path="title"/>
+            </td>
         </tr>
         <tr>
             <td class="p-3 text-end fw-semibold">작성자</td>
@@ -34,16 +44,29 @@
         </tr>
         <tr>
             <td class="p-3 text-end fw-semibold">내용</td>
-            <td class="p-3 pb-5"><form:textarea path="content" class="w-75" rows="8"/></td>
+            <td class="p-3 pb-5">
+                <form:textarea path="content" class="w-75 form-control" rows="8" required="false"/>
+                <div class="invalid-feedback">
+                    내용을 입력해주세요.
+                </div>
+                <form:errors class="invalid-feedback errors" path="content"/>
+            </td>
         </tr>
         <tr>
             <td class="p-3 text-end fw-semibold">비밀번호</td>
-            <td class="p-3"><form:password path="password" class="w-75"/></td>
+            <td class="p-3">
+                <form:password path="password" class="w-75 form-control" required="false"/>
+                <span class="figure-caption">해당 비밀번호는 수정 및 삭제할때 사용합니다.</span>
+                <div class="invalid-feedback">
+                    비밀번호를 입력해주세요.
+                </div>
+                <form:errors class="invalid-feedback errors" path="password"/>
+            </td>
         </tr>
     </table>
     <div class="text-center">
         <a href="/board" class="btn btn-outline-secondary">취소</a>
-        <button class="btn btn-outline-secondary">완료</button>
+        <input type="submit" class="btn btn-outline-secondary" value="완료"/>
     </div>
 </form:form>
 </body>
