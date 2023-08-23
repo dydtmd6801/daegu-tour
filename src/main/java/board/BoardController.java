@@ -65,6 +65,10 @@ public class BoardController {
         if (errors.hasErrors()) {
             return "board/write";
         }
+        if(!boardService.checkDuplicateBoard(boardDto)) {
+            errors.rejectValue("title","duplicateBoard");
+            return "board/write";
+        }
         boardService.write(boardDto);
         return "redirect:/board";
     }
