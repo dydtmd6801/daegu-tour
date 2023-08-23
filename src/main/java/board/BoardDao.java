@@ -45,6 +45,11 @@ public class BoardDao {
         return result.isEmpty() ? null : result;
     }
 
+    public List<BoardDto> searchByTitleAndWriter(String title, String writer) {
+        List<BoardDto> result = jdbcTemplate.query("select * from board where title = ? and writer = ?", (ResultSet rs, int numRow) -> resultBoardDto(rs), title, writer);
+        return result.isEmpty() ? null : result;
+    }
+
     public void resetAutoIncrement() {
         jdbcTemplate.execute("ALTER TABLE BOARD AUTO_INCREMENT = 1");
         jdbcTemplate.execute("SET @COUNT = 0");
