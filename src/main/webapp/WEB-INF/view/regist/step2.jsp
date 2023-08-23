@@ -20,7 +20,7 @@
     <script defer src="../../../static/js/setRegistFormDesign.js"></script>
     <style>
         .errors{
-            display: block;
+            display: block !important;
         }
     </style>
 </head>

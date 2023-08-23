@@ -14,7 +14,7 @@
     <script defer src="../../../static/js/setLoginFormDesign.js"></script>
     <style>
         .errors {
-            display: block;
+            display: block !important;
         }
     </style>
 </head>

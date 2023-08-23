@@ -18,7 +18,7 @@
             border-spacing: 1rem;
         }
         .errors {
-            display: block;
+            display: block !important;
         }
     </style>
     <script defer src="../../../static/js/checkValidation.js"></script>
