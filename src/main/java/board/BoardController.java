@@ -4,7 +4,6 @@ import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,14 +34,14 @@ public class BoardController {
     @GetMapping("/detail")
     public String showDetail(@RequestParam long id, Model model, HttpSession session) {
         BoardDto boardDetail = boardService.searchDetail(id);
-            AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
-            try {
-                if (boardDetail.getWriter().equals(authInfo.getUserName())) {
-                    model.addAttribute("auth", "Y");
-                }
-            } catch (NullPointerException e) {
-            } finally {
-                model.addAttribute("boardDetail", boardDetail);
+        AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
+        try {
+            if (boardDetail.getWriter().equals(authInfo.getUserName())) {
+                model.addAttribute("auth", "Y");
+            }
+        } catch (NullPointerException e) {
+        } finally {
+            model.addAttribute("boardDetail", boardDetail);
             return "/board/detail";
         }
     }
@@ -83,14 +82,16 @@ public class BoardController {
 
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, Model model, Errors errors) {
+        BoardDto modifyBoard = boardService.searchDetail(boardDto.getId());
         new BoardValidator().validate(boardDto, errors);
         if (errors.hasErrors()) {
-            return "redirect:/board/modify?id=" + boardDto.getId();
+            model.addAttribute("modifyBoard", modifyBoard);
+            return "board/modify";
         }
-        BoardDto modifyBoard = boardService.searchDetail(boardDto.getId());
         if(!boardDto.getPassword().equals(modifyBoard.getPassword())) {
+            model.addAttribute("modifyBoard", modifyBoard);
             errors.rejectValue("password","notMatchBoardPassword");
-            return "redirect:/board/modify?id=" + boardDto.getId();
+            return "board/modify";
         }
         boardService.updateBoard(boardDto);
         return "redirect:/board/detail?id=" + boardDto.getId();
@@ -101,11 +102,7 @@ public class BoardController {
     public String remove(HttpServletRequest request) {
         long id = Long.parseLong(request.getParameter("id"));
         String password = request.getParameter("password");
-
-        System.out.println("id : " + id + ", password : " + password);
-
         BoardDto removeBoard = boardService.searchDetail(id);
-        System.out.println("password : " + removeBoard.getPassword() + ", id : " + removeBoard.getTitle());
         if(password.equals(removeBoard.getPassword())) {
             boardService.removeBoard(id);
             return "success";
