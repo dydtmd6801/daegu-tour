@@ -3,6 +3,7 @@ package config;
 import board.BoardController;
 import board.BoardDao;
 import board.BoardService;
+import login.LogoutController;
 import regist.MemberDao;
 import index.IndexController;
 import login.LoginController;
@@ -75,5 +76,10 @@ public class ControllerConfig {
         BoardController controller = new BoardController();
         controller.setBoardService(boardService());
         return controller;
+    }
+
+    @Bean
+    public LogoutController logoutController() {
+        return new LogoutController();
     }
 }
