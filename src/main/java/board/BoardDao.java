@@ -80,4 +80,15 @@ public class BoardDao {
     public void update(BoardDto boardDto) {
         jdbcTemplate.update("update board set content = ? where id=?", boardDto.getContent(), boardDto.getId());
     }
+
+    public List<BoardDto> searchForPage(int skipBoardNumber, int showBoardNumber) {
+        List<BoardDto> pageBoard = jdbcTemplate.query("select * from board order by id desc limit ?, ?",
+                (ResultSet rs, int numRow) -> resultBoardDto(rs), skipBoardNumber, showBoardNumber);
+        return pageBoard;
+    }
+
+    public int totalBoardNumber() {
+        int totalNumber = jdbcTemplate.queryForObject("select count(*) from board", Integer.class);
+        return totalNumber;
+    }
 }
