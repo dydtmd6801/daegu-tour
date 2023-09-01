@@ -38,7 +38,7 @@
     <tbody class="table-group-divider">
     <c:forEach items="${boards}" var="board" varStatus="status">
         <tr>
-            <td>${fn:length(boards) - status.index}</td>
+            <td>${board.id}</td>
             <td><a class="text-decoration-none text-dark" href="/board/detail?id=${board.id}">${board.title}</a></td>
             <td>${board.writer}</td>
             <td>
@@ -49,6 +49,34 @@
     </c:forEach>
     </tbody>
 </table>
+<div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <c:if test="${paging.nowPage != 1}">
+                <li class="page-item">
+                    <a class="page-link" href="/board?page=${paging.nowPage - 1}" aria-label="Previous">
+                        <span aria-hidden="true">이전</span>
+                    </a>
+                </li>
+            </c:if>
+            <c:forEach var="pageNumber" begin="${paging.startPage}" end="${paging.endPage}">
+                <c:if test="${pageNumber == paging.nowPage}">
+                    <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
+                </c:if>
+                <c:if test="${pageNumber != paging.nowPage}">
+                    <li class="page-item"><a class="page-link" href="/board?page=${pageNumber}">${pageNumber}</a></li>
+                </c:if>
+            </c:forEach>
+            <c:if test="${paging.nowPage != paging.totalPage}">
+                <li class="page-item">
+                    <a class="page-link" href="/board?page=${paging.nowPage + 1}" aria-label="Next">
+                        <span aria-hidden="true">다음</span>
+                    </a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
+</div>
 <div class="d-flex justify-content-end mx-auto" style="max-width: 992px;">
     <a class="btn btn-outline-secondary" href="/board/write">글쓰기</a>
 </div>
