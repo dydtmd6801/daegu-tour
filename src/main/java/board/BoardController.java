@@ -15,18 +15,26 @@ import java.util.List;
 public class BoardController {
 
     private BoardService boardService;
+    private PagingService pagingService;
 
-    public void setBoardService(BoardService boardService) {
+    public void setBoardService(BoardService boardService, PagingService pagingService) {
         this.boardService = boardService;
+        this.pagingService = pagingService;
     }
 
     @GetMapping
-    public String board(@RequestParam(required = false, defaultValue = "Y") String status, Model model) {
+    public String board(@RequestParam(required = false, defaultValue = "Y") String status,
+                        @RequestParam int page, Model model) {
         boardService.resetAutoIncrement();
-        if(status.equals("N")) {
-            model.addAttribute("status","notFoundInfo");
+        if (status.equals("N")) {
+            model.addAttribute("status", "notFoundInfo");
         }
-        List<BoardDto> boards = boardService.listAll();
+        PagingDto pagingDto = pagingService.initPageNumber(page);
+        if (page > pagingDto.getTotalPage()) {
+            return "redirect:/board?page=" + pagingDto.getTotalPage();
+        }
+        model.addAttribute("paging", pagingDto);
+        List<BoardDto> boards = pagingService.listPage(page, pagingDto.getShowBoardNumber());
         model.addAttribute("boards", boards);
         return "/board/list";
     }
@@ -64,8 +72,8 @@ public class BoardController {
         if (errors.hasErrors()) {
             return "board/write";
         }
-        if(!boardService.checkDuplicateBoard(boardDto)) {
-            errors.rejectValue("title","duplicateBoard");
+        if (!boardService.checkDuplicateBoard(boardDto)) {
+            errors.rejectValue("title", "duplicateBoard");
             return "board/write";
         }
         boardService.write(boardDto);
@@ -88,9 +96,9 @@ public class BoardController {
             model.addAttribute("modifyBoard", modifyBoard);
             return "board/modify";
         }
-        if(!boardDto.getPassword().equals(modifyBoard.getPassword())) {
+        if (!boardDto.getPassword().equals(modifyBoard.getPassword())) {
             model.addAttribute("modifyBoard", modifyBoard);
-            errors.rejectValue("password","notMatchBoardPassword");
+            errors.rejectValue("password", "notMatchBoardPassword");
             return "board/modify";
         }
         boardService.updateBoard(boardDto);
@@ -103,7 +111,7 @@ public class BoardController {
         long id = Long.parseLong(request.getParameter("id"));
         String password = request.getParameter("password");
         BoardDto removeBoard = boardService.searchDetail(id);
-        if(password.equals(removeBoard.getPassword())) {
+        if (password.equals(removeBoard.getPassword())) {
             boardService.removeBoard(id);
             return "success";
         }
