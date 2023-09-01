@@ -33,7 +33,7 @@
                     <a class="nav-link fs-6" href="/tour">관광지</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-6" href="/board">공지사항</a>
+                    <a class="nav-link fs-6" href="/board?page=1">공지사항</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
