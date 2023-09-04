@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script defer src="../../../static/js/checkboxFilter.js"></script>
+    <script defer src="../../../static/js/searchFilter.js"></script>
     <style>
         .gugun {
             margin: 1rem;
@@ -24,6 +25,11 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">관광지 목록</h2>
+<div class="input-group mb-3 w-50 mx-auto">
+    <span class="input-group-text" id="searchTourList"><img src="../../../static/img/search.png" width="20px"/></span>
+    <input type="text" id="searchBar" class="form-control" placeholder="검색어를 입력해 주세요." aria-describedby="searchTourList" />
+    <button class="btn btn-outline-secondary" type="button" id="searchBtn">검색</button>
+</div>
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-between">
         <label class="gugun btn btn-outline-secondary btn-sm" for="달서구">달서구</label>
