@@ -180,4 +180,16 @@ public class TourController {
         model.addAttribute("tourList", tourDetailList);
         return "/tour/filterList";
     }
+
+    @GetMapping(value = "/tourSearch", produces = "application/test; charset=UTF-8")
+    public String tourSearch(@RequestParam("search") String searchWord, Model model) {
+        HashMap<String, TourListDto> tourSearchList = new HashMap<>();
+        for(TourListDto tourListDto : tourList.values()) {
+            if(tourListDto.getTitle().contains(searchWord)) {
+                tourSearchList.put(tourListDto.getContentId(), tourListDto);
+            }
+        }
+        model.addAttribute("tourList", tourSearchList);
+        return "/tour/filterList";
+    }
 }
