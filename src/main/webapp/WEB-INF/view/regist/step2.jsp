@@ -26,7 +26,7 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<div class="m-auto mt-5 w-25 d-flex flex-column align-items-center">
+<div class="m-auto mt-5 d-flex flex-column align-items-center" style="width: 35%">
     <h1 class="display-5 mb-5">회원가입</h1>
     <form:form action="step3" class="needs-validation w-100" method="post" modelAttribute="registDto" novalidate="false">
         <div class="input-group mb-2 w-100">
@@ -76,6 +76,37 @@
                 전화번호를 입력해주세요.
             </div>
             <form:errors class="invalid-feedback errors" path="phoneNumber"/>
+        </div>
+
+        <div class="input-group mb-2">
+            <div class="form-floating">
+                <form:input path="email" class="form-control" id="email" placeholder="이메일" required="false" />
+                <label for="email">이메일</label>
+                <div class="invalid-feedback">
+                    이메일을 입력해주세요.
+                </div>
+            </div>
+            <span class="input-group-text">@</span>
+            <select class="form-select" id="email2">
+                <option selected>선택하세요.</option>
+                <option value="1">naver.com</option>
+                <option value="2">gmail.com</option>
+                <option value="3">daum.net</option>
+            </select>
+            <button class="btn btn-outline-secondary" type="button" id="checkMailBtn">본인인증</button>
+        </div>
+        <div id="authResult" class="invalid-feedback errors mb-2"></div>
+        <form:errors class="invalid-feedback errors mb-2" path="email"/>
+
+        <div class="input-group mb-2 w-100">
+            <div class="form-floating">
+                <input type="text" id="authPassword" />
+                <label for="authPassword">인증번호</label>
+                <div class="invalid-feedback">
+                    인증번호를 입력해주세요.
+                </div>
+            </div>
+            <button class="btn btn-outline-secondary" type="button" id="checkAuth">인증하기</button>
         </div>
 
         <input class="btn btn-outline-secondary regist-btn w-100" type="submit" value="회원가입">
