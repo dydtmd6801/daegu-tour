@@ -18,6 +18,7 @@
     <script defer src="../../../static/js/checkDuplicationJS.js"></script>
     <script defer src="../../../static/js/checkValidation.js"></script>
     <script defer src="../../../static/js/setRegistFormDesign.js"></script>
+    <script defer src="../../../static/js/sendEmail.js"></script>
     <style>
         .errors{
             display: block !important;
@@ -89,18 +90,18 @@
             <span class="input-group-text">@</span>
             <select class="form-select" id="email2">
                 <option selected>선택하세요.</option>
-                <option value="1">naver.com</option>
-                <option value="2">gmail.com</option>
-                <option value="3">daum.net</option>
+                <option>naver.com</option>
+                <option>gmail.com</option>
+                <option>daum.net</option>
             </select>
             <button class="btn btn-outline-secondary" type="button" id="checkMailBtn">본인인증</button>
         </div>
         <div id="authResult" class="invalid-feedback errors mb-2"></div>
         <form:errors class="invalid-feedback errors mb-2" path="email"/>
 
-        <div class="input-group mb-2 w-100">
+        <div class="input-group mb-2 w-100" id="inputAuthPassword">
             <div class="form-floating">
-                <input type="text" id="authPassword" />
+                <input type="text" id="authPassword" class="form-control" />
                 <label for="authPassword">인증번호</label>
                 <div class="invalid-feedback">
                     인증번호를 입력해주세요.
