@@ -3,4 +3,5 @@
 .idea
 build
 keyConfig.properties
+emailConfig.properties
 /out
