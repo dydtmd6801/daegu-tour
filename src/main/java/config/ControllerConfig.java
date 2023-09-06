@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import regist.RegistController;
 import regist.RegistService;
+import regist.SendMailService;
 import tour.TourController;
 
 @Configuration
@@ -53,6 +54,11 @@ public class ControllerConfig {
     @Bean
     public PagingService pagingService() {
         return new PagingService(pagingDto(), boardDao());
+    }
+
+    @Bean
+    public SendMailService sendMailService() {
+        return new SendMailService();
     }
 
     @Bean
