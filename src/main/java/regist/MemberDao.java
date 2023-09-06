@@ -32,6 +32,7 @@ public class MemberDao {
                         ps.setString(2, registDto.getPassword());
                         ps.setString(3, registDto.getName());
                         ps.setString(4, registDto.getPhoneNumber());
+                        ps.setString(5, registDto.getEmail());
                         ps.setString(5, String.valueOf(LocalDateTime.now()));
                         return ps;
                     }
@@ -48,6 +49,7 @@ public class MemberDao {
                     registDto.setPassword(rs.getString("PASSWORD"));
                     registDto.setName(rs.getString("NAME"));
                     registDto.setPhoneNumber(rs.getString("PHONENUMBER"));
+                    registDto.setEmail(rs.getString("EMAIL"));
                     return registDto;
                 }, id);
         return result.isEmpty() ? null : result.get(0);
