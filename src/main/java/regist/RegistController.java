@@ -1,6 +1,7 @@
 package regist;
 
 import exception.DuplicateMemberException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,6 +17,9 @@ import java.util.Map;
 public class RegistController {
 
     private RegistService registService;
+
+    @Autowired
+    private SendMailService sendMailService;
 
     public void setRegistService(RegistService registService) {
         this.registService = registService;
@@ -102,4 +106,13 @@ public class RegistController {
             return "fail";
         }
     }
+
+    @ResponseBody
+    @GetMapping("/checkMailAuth")
+    public String checkMailAuth(@RequestParam String email) {
+        System.out.println("이메일 인증 요청이 들어옴");
+        System.out.println("이메일 인증 이메일 : " + email);
+        return sendMailService.sendEmail(email);
+    }
+
 }
