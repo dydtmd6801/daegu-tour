@@ -16,6 +16,7 @@
                 config.MvcConfig
                 config.DBConfig
                 config.ControllerConfig
+                config.MailConfig
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
