@@ -20,7 +20,7 @@
     <script defer src="../../../static/js/setRegistFormDesign.js"></script>
     <script defer src="../../../static/js/sendEmail.js"></script>
     <style>
-        .errors{
+        .errors, .error{
             display: block !important;
         }
     </style>
@@ -40,7 +40,7 @@
             </div>
             <button class="btn btn-outline-secondary" type="button" id="checkBtn">중복체크</button>
         </div>
-        <div id="result" class="invalid-feedback errors mb-2"></div>
+        <div id="result" class="invalid-feedback error mb-2"></div>
         <form:errors class="invalid-feedback errors mb-2" path="userId"/>
 
         <div class="form-floating mb-2 w-100">
@@ -96,12 +96,11 @@
             </select>
             <button class="btn btn-outline-secondary" type="button" id="checkMailBtn">본인인증</button>
         </div>
-        <div id="authResult" class="invalid-feedback errors mb-2"></div>
         <form:errors class="invalid-feedback errors mb-2" path="email"/>
 
-        <div class="input-group mb-2 w-100" id="inputAuthPassword">
+        <div class="input-group mb-2 w-100" id="inputAuthPassword" style="display: none">
             <div class="form-floating">
-                <input type="text" id="authPassword" class="form-control" />
+                <input type="text" id="authPassword" class="form-control" placeholder="인증번호" required="false"/>
                 <label for="authPassword">인증번호</label>
                 <div class="invalid-feedback">
                     인증번호를 입력해주세요.
@@ -109,6 +108,7 @@
             </div>
             <button class="btn btn-outline-secondary" type="button" id="checkAuth">인증하기</button>
         </div>
+        <div id="authResult" class="invalid-feedback error mb-2"></div>
 
         <input class="btn btn-outline-secondary regist-btn w-100" type="submit" value="회원가입">
     </form:form>
