@@ -21,3 +21,15 @@ formControls.forEach(formControl => {
         })
     })
 })
+
+$(".regist-btn").on({
+    click: function (event) {
+        event.preventDefault();
+        if(authFlag !== 1) {
+            alert("이메일 인증이 필요합니다.");
+            return;
+        }
+        $("#registDto").submit();
+        return;
+    }
+})
