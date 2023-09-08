@@ -2,7 +2,12 @@ let code;
 let authFlag = 0;
 
 $("#checkMailBtn").click(function () {
-    const email = $("#email").val() + "@" + $("#email2").val();
+    let email = "";
+    if ($("#direct").is(":checked")) {
+        email = $("#email").val();
+    } else {
+        email = $("#email").val() + $("#email2").val();
+    }
 
     $.ajax({
         url: "/regist/checkMailAuth",

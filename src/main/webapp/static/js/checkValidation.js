@@ -29,6 +29,9 @@ $(".regist-btn").on({
             alert("이메일 인증이 필요합니다.");
             return;
         }
+        if(!$("#direct").is(":checked")) {
+            $("#email").val($("#email").val() + $("#email2").val());
+        }
         $("#registDto").submit();
         return;
     }
