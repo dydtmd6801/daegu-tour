@@ -39,7 +39,7 @@
     <c:forEach items="${boards}" var="board" varStatus="status">
         <tr>
             <td>${board.id}</td>
-            <td><a class="text-decoration-none text-dark" href="/board/detail?id=${board.id}">${board.title}</a></td>
+            <td><a class="text-decoration-none text-dark" href="/board/detail?id=${board.id}&recentPage=${paging.nowPage}">${board.title}</a></td>
             <td>${board.writer}</td>
             <td>
                 <fmt:parseDate value="${board.date}" var="date" pattern="yyyy-MM-dd"/>

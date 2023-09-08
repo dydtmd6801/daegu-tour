@@ -29,6 +29,7 @@
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">공지사항</h2>
 <form:form modelAttribute="boardDto" novalidate="true" class="needs-validation">
+    <input type="hidden" id="recentPage" name="recentPage" value="${recentPage}" />
     <table class="table mx-auto border-1 border-top">
         <input type="hidden" id="id" value="${modifyBoard.id}"/>
         <tr>
@@ -61,7 +62,7 @@
         </tr>
     </table>
     <div class="text-center">
-        <a href="/board/detail?id=${modifyBoard.id}" class="btn btn-outline-secondary">취소</a>
+        <a href="/board/detail?id=${modifyBoard.id}&recentPage=${recentPage}" class="btn btn-outline-secondary">취소</a>
         <input type="button" id="removeBtn" class="btn btn-outline-secondary" value="삭제"/>
         <input type="submit" class="btn btn-outline-secondary" value="완료"/>
     </div>

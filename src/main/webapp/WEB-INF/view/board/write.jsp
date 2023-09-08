@@ -65,7 +65,7 @@
         </tr>
     </table>
     <div class="text-center">
-        <a href="/board" class="btn btn-outline-secondary">취소</a>
+        <a href="/board?page=1" class="btn btn-outline-secondary">취소</a>
         <input type="submit" class="btn btn-outline-secondary" value="완료"/>
     </div>
 </form:form>
