@@ -40,7 +40,7 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public String showDetail(@RequestParam long id, Model model, HttpSession session) {
+    public String showDetail(@RequestParam long id, @RequestParam int recentPage, Model model, HttpSession session) {
         BoardDto boardDetail = boardService.searchDetail(id);
         AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
         try {
@@ -50,6 +50,7 @@ public class BoardController {
         } catch (NullPointerException e) {
         } finally {
             model.addAttribute("boardDetail", boardDetail);
+            model.addAttribute("recentPage", recentPage);
             return "/board/detail";
         }
     }
@@ -62,7 +63,7 @@ public class BoardController {
             model.addAttribute("AuthInfo", authInfo);
             return "/board/write";
         } catch (NullPointerException NPE) {
-            return "redirect:/board?status=N";
+            return "redirect:/board?status=N&page=1";
         }
     }
 
@@ -76,20 +77,26 @@ public class BoardController {
             errors.rejectValue("title", "duplicateBoard");
             return "board/write";
         }
+        boardDto.setContent(boardDto.getContent().replace("\r\n","<br/>"));
         boardService.write(boardDto);
-        return "redirect:/board";
+        return "redirect:/board?page=1";
     }
 
     @GetMapping("/modify")
-    public String modify(@RequestParam long id, Model model, HttpSession session, BoardDto boardDto) {
+    public String modify(@RequestParam long id, @RequestParam int recentPage, Model model, HttpSession session, BoardDto boardDto) {
+        AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
         BoardDto modifyBoard = boardService.searchDetail(id);
+        if (!authInfo.getUserName().equals(modifyBoard.getWriter())) {
+            return "redirect:/board/detail?id=" + id + "$recentPage=" + recentPage;
+        }
         model.addAttribute("modifyBoard", modifyBoard);
-        model.addAttribute("authInfo", session.getAttribute("AuthInfo"));
+        model.addAttribute("authInfo", authInfo);
+        model.addAttribute("recentPage", recentPage);
         return "board/modify";
     }
 
     @PostMapping("/modify")
-    public String modify(BoardDto boardDto, Model model, Errors errors) {
+    public String modify(@RequestParam int recentPage, BoardDto boardDto, Model model, Errors errors) {
         BoardDto modifyBoard = boardService.searchDetail(boardDto.getId());
         new BoardValidator().validate(boardDto, errors);
         if (errors.hasErrors()) {
@@ -101,8 +108,9 @@ public class BoardController {
             errors.rejectValue("password", "notMatchBoardPassword");
             return "board/modify";
         }
+        boardDto.setContent(boardDto.getContent().replace("\r\n","<br/>"));
         boardService.updateBoard(boardDto);
-        return "redirect:/board/detail?id=" + boardDto.getId();
+        return "redirect:/board/detail?id=" + boardDto.getId() + "&recentPage=" + recentPage;
     }
 
     @ResponseBody
