@@ -27,13 +27,13 @@ public class MemberDao {
                 new PreparedStatementCreator() {
                     @Override
                     public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                        PreparedStatement ps = con.prepareStatement("insert into MEMBER (USERID, PASSWORD, NAME, PHONENUMBER, REGISTDATE) values (?,?,?,?,?)", new String[]{"ID"});
+                        PreparedStatement ps = con.prepareStatement("insert into MEMBER (USERID, PASSWORD, NAME, PHONENUMBER, EMAIL, REGISTDATE) values (?,?,?,?,?,?)", new String[]{"ID"});
                         ps.setString(1, registDto.getUserId());
                         ps.setString(2, registDto.getPassword());
                         ps.setString(3, registDto.getName());
                         ps.setString(4, registDto.getPhoneNumber());
                         ps.setString(5, registDto.getEmail());
-                        ps.setString(5, String.valueOf(LocalDateTime.now()));
+                        ps.setString(6, String.valueOf(LocalDateTime.now()));
                         return ps;
                     }
                 }, keyHolder);
