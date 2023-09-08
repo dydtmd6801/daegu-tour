@@ -81,19 +81,21 @@
 
         <div class="input-group mb-2">
             <div class="form-floating">
-                <form:input path="email" class="form-control" id="email" placeholder="이메일" required="false" />
+                <form:input path="email" class="form-control" id="email" placeholer="이메일" required="false"/>
                 <label for="email">이메일</label>
                 <div class="invalid-feedback">
                     이메일을 입력해주세요.
                 </div>
             </div>
-            <span class="input-group-text">@</span>
             <select class="form-select" id="email2">
-                <option selected>선택하세요.</option>
-                <option>naver.com</option>
-                <option>gmail.com</option>
-                <option>daum.net</option>
+                <option>@naver.com</option>
+                <option>@gmail.com</option>
+                <option>@daum.net</option>
             </select>
+            <div class="input-group-text">
+                <c:out value="직접입력 "/>
+                <input id="direct" class="form-check-input mt-0" type="checkbox" value="">
+            </div>
             <button class="btn btn-outline-secondary" type="button" id="checkMailBtn">본인인증</button>
         </div>
         <form:errors class="invalid-feedback errors mb-2" path="email"/>
