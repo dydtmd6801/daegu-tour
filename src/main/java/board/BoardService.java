@@ -17,7 +17,7 @@ public class BoardService {
     }
 
     public boolean checkDuplicateBoard(BoardDto boardDto) {
-        return boardDao.searchByTitleAndWriter(boardDto.getTitle(), boardDto.getWriter()).isEmpty() ? true : false;
+        return boardDao.searchByTitleAndWriter(boardDto.getTitle(), boardDto.getWriter()) == null;
     }
 
     public List<BoardDto> listAll() {
