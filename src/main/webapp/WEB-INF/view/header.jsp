@@ -12,15 +12,25 @@
     <title>header</title>
     <link rel="stylesheet" href="../../static/css/font.css">
     <link rel="stylesheet" href="../../static/css/navBar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script defer src="../../static/js/logOut.js"></script>
+    <script defer src="../../static/js/changeUserInfo.js"></script>
     <style>
         .navbar{
             background-color: #fff;
             position: static !important;
         }
+        .userMenu {
+            display: none;
+            font-size: 0.75rem;
+            width: 149px;
+            top: 35px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg border-bottom border-secondary">
@@ -45,22 +55,11 @@
                     <a class="nav-link fs-6" href="/regist">회원가입</a>
                 </c:if>
                 <c:if test="${!empty AuthInfo}">
-                    <span class="nav-link fs-6"><strong>${AuthInfo.userName}</strong></span>
+                    <span class="nav-link fs-6 userName" style="position: relative"><strong>${AuthInfo.userName}</strong>
+                    <a class="userMenu nav-link text-center text-bg-secondary position-absolute rounded" href="/changeInfo">
+                        개인정보수정
+                    </a></span>
                     <button class="nav-link fs-6" id="logout">로그아웃</button>
-                    <script>
-                        const logoutBtn = document.querySelector("#logout");
-
-                        logoutBtn.addEventListener("click", () => {
-                            $.ajax({
-                                url: "/logout",
-                                type: "get",
-                                success: () => {
-                                    window.alert("로그아웃 되었습니다.");
-                                    window.location.href="/index";
-                                },
-                            })
-                        })
-                    </script>
                 </c:if>
             </ul>
         </div>

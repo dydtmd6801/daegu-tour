@@ -18,6 +18,18 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script defer src="/static/js/imageSlider.js"></script>
     <script defer src="/static/js/navBarOpacity.js"></script>
+    <script defer src="/static/js/logOut.js"></script>
+    <script defer src="/static/js/changeUserInfo.js"></script>
+    <style>
+        .userMenu {
+            display: none;
+            font-size: 0.75rem;
+            width: 149px;
+            top: 35px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
@@ -42,22 +54,12 @@
                     <a class="nav-link fs-6" href="/regist">회원가입</a>
                 </c:if>
                 <c:if test="${!empty AuthInfo}">
-                    <span class="nav-link fs-6"><strong>${AuthInfo.userName}님</strong>, 환영합니다!</span>
+                    <span class="nav-link fs-6 userName" style="position: relative"><strong>${AuthInfo.userName}님</strong>, 환영합니다!
+                    <a class="userMenu nav-link text-center text-bg-secondary position-absolute rounded" href="/changeInfo">
+                        개인정보수정
+                    </a>
+                    </span>
                     <button class="nav-link fs-6" id="logout">로그아웃</button>
-                    <script>
-                        const logoutBtn = document.querySelector("#logout");
-
-                        logoutBtn.addEventListener("click", () => {
-                            $.ajax({
-                                url: "/logout",
-                                type: "get",
-                                success: () => {
-                                    window.alert("로그아웃 되었습니다.");
-                                    window.location.href="/index";
-                                },
-                            })
-                        })
-                    </script>
                 </c:if>
             </ul>
         </div>
