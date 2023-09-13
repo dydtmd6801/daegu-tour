@@ -55,7 +55,7 @@
                 </c:if>
                 <c:if test="${!empty AuthInfo}">
                     <span class="nav-link fs-6 userName" style="position: relative"><strong>${AuthInfo.userName}님</strong>, 환영합니다!
-                    <a class="userMenu nav-link text-center text-bg-secondary position-absolute rounded" href="/changeInfo">
+                    <a class="userMenu nav-link text-center text-bg-secondary position-absolute rounded" href="/userInfo">
                         개인정보수정
                     </a>
                     </span>
