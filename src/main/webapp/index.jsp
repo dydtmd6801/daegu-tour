@@ -50,6 +50,11 @@
             </ul>
             <ul class="navbar-nav">
                 <c:if test="${empty AuthInfo}">
+                    <c:if test="${checkSession eq 'N'}">
+                        <script>
+                            window.alert("로그인을 해주세요.");
+                        </script>
+                    </c:if>
                     <a class="nav-link fs-6" href="/login">로그인</a>
                     <a class="nav-link fs-6" href="/regist">회원가입</a>
                 </c:if>
