@@ -1,6 +1,8 @@
 package config;
 
 import board.*;
+import change.user.info.ChangeUserInfoController;
+import change.user.info.ChangeUserInfoService;
 import login.LogoutController;
 import regist.MemberDao;
 import index.IndexController;
@@ -62,6 +64,11 @@ public class ControllerConfig {
     }
 
     @Bean
+    public ChangeUserInfoService changeUserInfoService() {
+        return new ChangeUserInfoService(memberDao());
+    }
+
+    @Bean
     public LoginController loginController() {
         LoginController controller = new LoginController();
         controller.setLoginService(loginService());
@@ -95,5 +102,11 @@ public class ControllerConfig {
     @Bean
     public LogoutController logoutController() {
         return new LogoutController();
+    }
+
+    @Bean
+    public ChangeUserInfoController changeUserInfoController() {
+        ChangeUserInfoController controller = new ChangeUserInfoController(changeUserInfoService());
+        return controller;
     }
 }
