@@ -1,10 +1,10 @@
 package regist;
 
+import change.user.info.ChangeUserInfoDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import regist.RegistDto;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -53,5 +53,13 @@ public class MemberDao {
                     return registDto;
                 }, id);
         return result.isEmpty() ? null : result.get(0);
+    }
+
+    public void changeUserInfo(ChangeUserInfoDto changeUserInfoDto) {
+        jdbcTemplate.update("update member set name = ?, phonenumber = ?, email = ? where userid = ?", changeUserInfoDto.getName(), changeUserInfoDto.getPhoneNumber(), changeUserInfoDto.getEmail(), changeUserInfoDto.getUserId());
+    }
+
+    public void changeUserPassword(ChangeUserInfoDto changeUserInfoDto) {
+        jdbcTemplate.update("update member set password = ? where userid = ?", changeUserInfoDto.getPassword(), changeUserInfoDto.getUserId());
     }
 }
