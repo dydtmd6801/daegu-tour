@@ -18,4 +18,8 @@ public class ChangeUserInfoService {
         }
         return memberInfo;
     }
+
+    public RegistDto getUserInfo(String userId) {
+        return memberDao.findById(userId);
+    }
 }
