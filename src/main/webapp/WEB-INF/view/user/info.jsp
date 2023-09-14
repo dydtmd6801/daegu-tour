@@ -32,23 +32,26 @@
     </form:form>
 </c:if>
 <c:if test="${!empty userInfo}">
-    <div class="mx-auto" style="width: 35%">
-        <div class="w-100">
-            <div class="w-50 float-start fs-6 fw-bold">
-                <p>아이디 :</p>
-                <p>이름 :</p>
-                <p>전화번호 :</p>
-                <p>이메일 :</p>
+    <form action="/userInfo/edit" method="post">
+        <input type="hidden" value="${userInfo.userId}" name="userId" id="userId">
+        <div class="mx-auto" style="width: 35%">
+            <div class="w-100">
+                <div class="w-50 float-start fs-6 fw-bold">
+                    <p>아이디 :</p>
+                    <p>이름 :</p>
+                    <p>전화번호 :</p>
+                    <p>이메일 :</p>
+                </div>
+                <div class="w-50 float-end text-end fs-6">
+                    <p>${userInfo.userId}</p>
+                    <p>${userInfo.name}</p>
+                    <p>${userInfo.phoneNumber}</p>
+                    <p>${userInfo.email}</p>
+                </div>
             </div>
-            <div class="w-50 float-end text-end fs-6">
-                <p>${userInfo.userId}</p>
-                <p>${userInfo.name}</p>
-                <p>${userInfo.phoneNumber}</p>
-                <p>${userInfo.email}</p>
-            </div>
+            <button class="btn btn-outline-secondary mx-auto d-block">수정</button>
         </div>
-        <a href="/userInfo/edit" class="btn btn-outline-secondary mx-auto d-block">수정</a>
-    </div>
+    </form>
 </c:if>
 </body>
 </html>
