@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import regist.RegistDto;
 
 import javax.servlet.http.HttpSession;
@@ -42,5 +43,18 @@ public class ChangeUserInfoController {
         } catch (NullPointerException npe) {
             return "/user/info";
         }
+    }
+
+    @GetMapping("/edit")
+    public String userInfoEdit() {
+        return "redirect:/index";
+    }
+
+    @PostMapping("/edit")
+    public String userInfoEdit(@RequestParam String userId, Model model) {
+        ChangeUserInfoDto changeUserInfoDto = new ChangeUserInfoDto();
+        model.addAttribute("userInfo", changeUserInfoService.getUserInfo(userId));
+        model.addAttribute("changeUserInfoDto", changeUserInfoDto);
+        return "/user/edit";
     }
 }
