@@ -14,10 +14,11 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">회원정보</h2>
-<form:form modelAttribute="changeUserInfoDto" action="/user/update">
+<form:form modelAttribute="changeUserInfoDto" action="/userInfo/update">
     <div class="mx-auto" style="width: 35%">
         <div class="w-100 d-flex flex-row justify-content-between align-items-center">
             <p class="fs-6 fw-bold">아이디 : </p>
+            <form:hidden path="userId" value="${userInfo.userId}"/>
             <p>${userInfo.userId}</p>
         </div>
         <div class="w-100 d-flex flex-row justify-content-between align-items-center">

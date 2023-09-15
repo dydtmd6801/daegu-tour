@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import regist.RegistDto;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 @RequestMapping("/userInfo")
@@ -56,5 +59,21 @@ public class ChangeUserInfoController {
         model.addAttribute("userInfo", changeUserInfoService.getUserInfo(userId));
         model.addAttribute("changeUserInfoDto", changeUserInfoDto);
         return "/user/edit";
+    }
+
+    @GetMapping("/update")
+    public String update() {
+        return "redirect:/index";
+    }
+
+    @PostMapping("/update")
+    public void update(ChangeUserInfoDto changeUserInfoDto, HttpServletResponse response) throws IOException {
+        changeUserInfoService.updateInfo(changeUserInfoDto);
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('개인정보가 수정되었습니다.');");
+        out.println("location.href='/userInfo';</script>");
+        out.close();
     }
 }
