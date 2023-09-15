@@ -22,4 +22,8 @@ public class ChangeUserInfoService {
     public RegistDto getUserInfo(String userId) {
         return memberDao.findById(userId);
     }
+
+    public void updateInfo(ChangeUserInfoDto changeUserInfoDto) {
+        memberDao.changeUserInfo(changeUserInfoDto);
+    }
 }
