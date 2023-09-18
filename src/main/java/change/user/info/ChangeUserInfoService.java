@@ -1,5 +1,6 @@
 package change.user.info;
 
+import change.user.password.ChangeUserPasswordDto;
 import regist.MemberDao;
 import regist.RegistDto;
 
@@ -25,5 +26,9 @@ public class ChangeUserInfoService {
 
     public void updateInfo(ChangeUserInfoDto changeUserInfoDto) {
         memberDao.changeUserInfo(changeUserInfoDto);
+    }
+
+    public void updatePassword(String password, String id) {
+        memberDao.changeUserPassword(password, id);
     }
 }

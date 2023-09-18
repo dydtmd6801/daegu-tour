@@ -1,6 +1,7 @@
 package regist;
 
 import change.user.info.ChangeUserInfoDto;
+import change.user.password.ChangeUserPasswordDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -59,7 +60,7 @@ public class MemberDao {
         jdbcTemplate.update("update member set name = ?, phonenumber = ?, email = ? where userid = ?", changeUserInfoDto.getName(), changeUserInfoDto.getPhoneNumber(), changeUserInfoDto.getEmail(), changeUserInfoDto.getUserId());
     }
 
-    public void changeUserPassword(ChangeUserInfoDto changeUserInfoDto) {
-        jdbcTemplate.update("update member set password = ? where userid = ?", changeUserInfoDto.getPassword(), changeUserInfoDto.getUserId());
+    public void changeUserPassword(String password, String id) {
+        jdbcTemplate.update("update member set password = ? where userid = ?", password, id);
     }
 }
