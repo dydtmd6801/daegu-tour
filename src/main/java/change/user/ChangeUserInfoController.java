@@ -1,5 +1,7 @@
-package change.user.info;
+package change.user;
 
+import change.user.info.ChangeUserInfoDto;
+import change.user.info.ChangeUserInfoService;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
