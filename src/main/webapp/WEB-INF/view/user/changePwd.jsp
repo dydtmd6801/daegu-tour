@@ -14,20 +14,20 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">비밀번호 변경</h2>
-<form:form style="width:35%" modelAttribute="changeUserPasswordDto">
+<form:form style="width:35%" class="mx-auto" modelAttribute="changeUserPasswordDto">
     <div class="form-floating mb-2 w-100">
-        <form:input path="currentPassword" class="form-control" placeholder="현재 비밀번호"/>
+        <form:password path="currentPassword" class="form-control" placeholder="현재 비밀번호"/>
         <label for="currentPassword">현재 비밀번호</label>
     </div>
     <div class="form-floating mb-2 w-100">
-        <form:input path="newPassword" class="form-control" placeholder="새 비밀번호"/>
+        <form:password path="newPassword" class="form-control" placeholder="새 비밀번호"/>
         <label for="newPassword">새 비밀번호</label>
     </div>
     <div class="form-floating mb-2 w-100">
-        <form:input path="newConfirmPassword" class="form-control" placeholder="새 비밀번호 확인"/>
+        <form:password path="newConfirmPassword" class="form-control" placeholder="새 비밀번호 확인"/>
         <label for="newConfirmPassword">새 비밀번호 확인</label>
     </div>
-    <button class="btn btn-outline-secondary w-100">수정하기</button>
+    <button class="btn btn-outline-secondary w-100" style="height: 58px;">수정하기</button>
 </form:form>
 </body>
 </html>
