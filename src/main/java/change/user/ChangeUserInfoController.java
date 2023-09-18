@@ -2,6 +2,7 @@ package change.user;
 
 import change.user.info.ChangeUserInfoDto;
 import change.user.info.ChangeUserInfoService;
+import change.user.password.ChangeUserPasswordDto;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,5 +78,31 @@ public class ChangeUserInfoController {
         out.println("<script>alert('개인정보가 수정되었습니다.');");
         out.println("location.href='/userInfo';</script>");
         out.close();
+    }
+
+    @GetMapping("/changePwd")
+    public String ChangePassword(ChangeUserPasswordDto changeUserPasswordDto, HttpSession session) {
+        if (session.getAttribute("AuthInfo") == null) {
+            return "redirect:/index";
+        }
+        return "/user/changePwd";
+    }
+
+    @PostMapping("/changePwd")
+    public String changePwd(ChangeUserPasswordDto changeUserPasswordDto, HttpSession session) {
+        AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
+        try {
+            RegistDto userInfo = changeUserInfoService.getUserInfo(authInfo.getUserId());
+            if (!userInfo.getPassword().equals(changeUserPasswordDto.getCurrentPassword())) {
+                return "/user/changePwd";
+            }
+            if (!changeUserPasswordDto.getNewPassword().equals(changeUserPasswordDto.getNewConfirmPassword())) {
+                return "user/changePwd";
+            }
+            changeUserInfoService.updatePassword(changeUserPasswordDto.getNewPassword(), authInfo.getUserId());
+            return "redirect:/userInfo";
+        } catch (NullPointerException npe) {
+            return "redirect:/index";
+        }
     }
 }
