@@ -59,7 +59,7 @@
                     <div class="userMenu text-center nav-link text-bg-secondary position-absolute rounded" href="/userInfo">
                         <a class="text-bg-secondary nav-link text-decoration-none" href="/userInfo">개인정보수정</a>
                         <hr class="dropdown-divider" style="border: 1px solid white">
-                        <a class="text-bg-secondary nav-link text-decoration-none" href="/changePwd">비밀번호변경</a>
+                        <a class="text-bg-secondary nav-link text-decoration-none" href="/userInfo/changePwd">비밀번호변경</a>
                     </div>
                     </span>
                     <button class="nav-link fs-6" id="logout">로그아웃</button>
