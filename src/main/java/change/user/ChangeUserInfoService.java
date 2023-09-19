@@ -1,6 +1,5 @@
-package change.user.info;
+package change.user;
 
-import change.user.password.ChangeUserPasswordDto;
 import regist.MemberDao;
 import regist.RegistDto;
 

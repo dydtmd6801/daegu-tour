@@ -1,8 +1,5 @@
 package change.user;
 
-import change.user.info.ChangeUserInfoDto;
-import change.user.info.ChangeUserInfoService;
-import change.user.password.ChangeUserPasswordDto;
 import common.CommonScript;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package change.user.password;
+package change.user;
 
 public class ChangeUserPasswordDto {
 

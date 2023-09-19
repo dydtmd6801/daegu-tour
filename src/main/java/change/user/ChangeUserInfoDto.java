@@ -1,4 +1,4 @@
-package change.user.info;
+package change.user;
 
 public class ChangeUserInfoDto {
 

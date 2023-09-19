@@ -1,7 +1,6 @@
 package regist;
 
-import change.user.info.ChangeUserInfoDto;
-import change.user.password.ChangeUserPasswordDto;
+import change.user.ChangeUserInfoDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

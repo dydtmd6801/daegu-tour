@@ -2,7 +2,7 @@ package config;
 
 import board.*;
 import change.user.ChangeUserInfoController;
-import change.user.info.ChangeUserInfoService;
+import change.user.ChangeUserInfoService;
 import login.LogoutController;
 import regist.MemberDao;
 import index.IndexController;
