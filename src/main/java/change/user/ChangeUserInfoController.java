@@ -3,6 +3,7 @@ package change.user;
 import change.user.info.ChangeUserInfoDto;
 import change.user.info.ChangeUserInfoService;
 import change.user.password.ChangeUserPasswordDto;
+import common.CommonScript;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,27 +16,29 @@ import regist.RegistDto;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @Controller
 @RequestMapping("/userInfo")
 public class ChangeUserInfoController {
 
     private ChangeUserInfoService changeUserInfoService;
+    private CommonScript commonScript = new CommonScript();
 
     public ChangeUserInfoController(ChangeUserInfoService changeUserInfoService) {
         this.changeUserInfoService = changeUserInfoService;
     }
 
     @GetMapping
-    public String userInfo(ChangeUserInfoDto changeUserInfoDto, HttpSession session, Model model) {
+    public String userInfo(ChangeUserInfoDto changeUserInfoDto, HttpSession session, HttpServletResponse response) throws IOException {
         try {
             AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
             authInfo.getUserId();
             return "/user/info";
         } catch (NullPointerException npe) {
-            model.addAttribute("checkSession", "N");
-            return "redirect:/index";
+            String alertText = "로그인을 해주세요.";
+            String redirectUrl = "/index";
+            commonScript.alertScript(response, alertText, redirectUrl);
+            return "../../index";
         }
     }
 
@@ -72,12 +75,9 @@ public class ChangeUserInfoController {
     @PostMapping("/update")
     public void update(ChangeUserInfoDto changeUserInfoDto, HttpServletResponse response) throws IOException {
         changeUserInfoService.updateInfo(changeUserInfoDto);
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<script>alert('개인정보가 수정되었습니다.');");
-        out.println("location.href='/userInfo';</script>");
-        out.close();
+        String alertText = "개인정보가 수정되었습니다.";
+        String redirectUrl = "/userInfo";
+        commonScript.alertScript(response, alertText, redirectUrl);
     }
 
     @GetMapping("/changePwd")
