@@ -10,29 +10,44 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        .errors{
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <h2 class="text-center my-5">회원정보</h2>
 <form:form modelAttribute="changeUserInfoDto" action="/userInfo/update">
     <div class="mx-auto" style="width: 35%">
-        <div class="w-100 d-flex flex-row justify-content-between align-items-center">
+        <div class="w-100 d-flex flex-row justify-content-between align-items-center mb-3">
             <p class="fs-6 fw-bold">아이디 : </p>
             <form:hidden path="userId" value="${userInfo.userId}"/>
             <p>${userInfo.userId}</p>
         </div>
-        <div class="w-100 d-flex flex-row justify-content-between align-items-center">
+        <div class="w-100 d-flex flex-row justify-content-between align-items-center mb-3">
             <p class="fs-6 fw-bold">이름 : </p>
-            <p><form:input class="form-control" path="name" value="${userInfo.name}"/></p>
+            <div class="text-end">
+                <form:input class="form-control" path="name" value="${userInfo.name}"/>
+                <form:errors path="name" class="invalid-feedback errors"/>
+            </div>
         </div>
-        <div class="w-100 d-flex flex-row justify-content-between align-items-center">
+        <div class="w-100 d-flex flex-row justify-content-between align-items-center mb-3">
             <p class="fs-6 fw-bold">전화번호 : </p>
-            <p><form:input class="form-control" path="phoneNumber" value="${userInfo.phoneNumber}"/></p>
+            <div class="text-end">
+                <form:input class="form-control" path="phoneNumber" value="${userInfo.phoneNumber}"/>
+                <form:errors path="phoneNumber" class="invalid-feedback errors"/>
+            </div>
         </div>
-        <div class="w-100 d-flex flex-row justify-content-between align-items-center">
+        <div class="w-100 d-flex flex-row justify-content-between align-items-center mb-3">
             <p class="fs-6 fw-bold">이메일 : </p>
-            <p><form:input class="form-control" path="email" value="${userInfo.email}"/></p>
+            <div class="text-end">
+                <form:input class="form-control" path="email" value="${userInfo.email}"/>
+                <form:errors path="email" class="invalid-feedback errors"/>
+            </div>
         </div>
+
         <button class="btn btn-outline-secondary mx-auto d-block">수정완료</button>
     </div>
 </form:form>
