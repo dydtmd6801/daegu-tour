@@ -24,13 +24,16 @@ public class ChangeUserInfoValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         ChangeUserInfoDto changeUserInfoDto = (ChangeUserInfoDto) target;
-        Matcher matcher = phoneNumberPattern.matcher(changeUserInfoDto.getPhoneNumber());
-        if (!matcher.matches()) {
-            errors.rejectValue("phoneNumber","bad");
-        }
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password","required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"email","required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phoneNumber","required");
+        Matcher matcher = phoneNumberPattern.matcher(changeUserInfoDto.getPhoneNumber());
+        if (changeUserInfoDto.getPhoneNumber() == null || changeUserInfoDto.getPhoneNumber().trim().isEmpty()) {
+            errors.rejectValue("phoneNumber","required");
+            return;
+        }
+        if (!matcher.matches()) {
+            errors.rejectValue("phoneNumber","bad");
+            return;
+        }
     }
 }
