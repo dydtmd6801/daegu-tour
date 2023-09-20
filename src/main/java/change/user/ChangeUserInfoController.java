@@ -4,6 +4,7 @@ import common.CommonScript;
 import login.AuthInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,11 +71,17 @@ public class ChangeUserInfoController {
     }
 
     @PostMapping("/update")
-    public void update(ChangeUserInfoDto changeUserInfoDto, HttpServletResponse response) throws IOException {
+    public String update(@RequestParam String userId, Model model, ChangeUserInfoDto changeUserInfoDto, HttpServletResponse response, Errors errors) throws IOException {
+        new ChangeUserInfoValidator().validate(changeUserInfoDto, errors);
+        if (errors.hasErrors()) {
+            model.addAttribute("userInfo", changeUserInfoService.getUserInfo(userId));
+            return "/user/edit";
+        }
         changeUserInfoService.updateInfo(changeUserInfoDto);
         String alertText = "개인정보가 수정되었습니다.";
         String redirectUrl = "/userInfo";
         commonScript.alertScript(response, alertText, redirectUrl);
+        return "../../index";
     }
 
     @GetMapping("/changePwd")
