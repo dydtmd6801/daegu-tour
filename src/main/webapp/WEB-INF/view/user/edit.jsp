@@ -15,6 +15,8 @@
             display: block !important;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script defer src="../../../static/js/removeClass.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
