@@ -25,6 +25,14 @@
     </div>
     <div class="p-3 border-1 border-dark-subtle border-bottom">${boardDetail.content}</div>
 </div>
+<:c:forEach var="comment" items="${comments}">
+    <div class="mx-auto" style="max-width: 992px">
+        <div class="p-3 border-1 border-dark-subtle border-bottom d-flex flex-row align-items-center">
+            <span class="fw-bold" style="width: 10%">${comment.name}</span>
+            <span>${comment.content}</span>
+        </div>
+    </div>
+</:c:forEach>
 <c:if test="${!empty AuthInfo}">
     <div class="mx-auto " style="max-width: 992px">
         <div class="p-3 border-1 border-dark-subtle border-bottom d-flex flex-row align-items-center">
