@@ -45,7 +45,7 @@ public class BoardController {
         AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
         try {
             if (boardDetail.getWriter().equals(authInfo.getUserName())) {
-                model.addAttribute("auth", "Y");
+                model.addAttribute("AuthInfo", authInfo);
             }
         } catch (NullPointerException e) {
         } finally {

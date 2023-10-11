@@ -25,8 +25,19 @@
     </div>
     <div class="p-3 border-1 border-dark-subtle border-bottom">${boardDetail.content}</div>
 </div>
+<c:if test="${!empty AuthInfo}">
+    <div class="mx-auto " style="max-width: 992px">
+        <div class="p-3 border-1 border-dark-subtle border-bottom d-flex flex-row align-items-center">
+            <span class="fw-bold" style="width: 10%">${AuthInfo.userName}</span>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="댓글을 입력해주세요">
+                <button class="btn btn-outline-secondary" type="button" id="inputComment">댓글 입력</button>
+            </div>
+        </div>
+    </div>
+</c:if>
 <div class="text-center">
-    <c:if test="${auth eq 'Y'}">
+    <c:if test="${!empty AuthInfo}">
         <a class="btn btn-outline-secondary mt-3" href="/board/modify?id=${boardDetail.id}&recentPage=${recentPage}">수정</a>
     </c:if>
     <a class="btn btn-outline-secondary mt-3" href="/board?page=${recentPage}">목록</a>
