@@ -44,4 +44,8 @@ public class BoardService {
     public void updateBoard(BoardDto boardDto) {
         boardDao.update(boardDto);
     }
+
+    public List<CommentDto> commentList(int boardId) {
+        return boardDao.getComment(boardId);
+    }
 }

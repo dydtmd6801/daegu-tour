@@ -43,12 +43,14 @@ public class BoardController {
     public String showDetail(@RequestParam long id, @RequestParam int recentPage, Model model, HttpSession session) {
         BoardDto boardDetail = boardService.searchDetail(id);
         AuthInfo authInfo = (AuthInfo) session.getAttribute("AuthInfo");
+        List<CommentDto> comments = boardService.commentList((int) boardDetail.getId());
         try {
             if (boardDetail.getWriter().equals(authInfo.getUserName())) {
                 model.addAttribute("AuthInfo", authInfo);
             }
         } catch (NullPointerException e) {
         } finally {
+            model.addAttribute("comments", comments);
             model.addAttribute("boardDetail", boardDetail);
             model.addAttribute("recentPage", recentPage);
             return "/board/detail";
