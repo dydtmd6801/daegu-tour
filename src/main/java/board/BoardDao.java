@@ -74,7 +74,7 @@ public class BoardDao {
     }
 
     public void remove(long id) {
-        jdbcTemplate.update("delete from board where id=?",id);
+        jdbcTemplate.update("delete from board where id=?", id);
     }
 
     public void update(BoardDto boardDto) {
@@ -90,5 +90,17 @@ public class BoardDao {
     public int totalBoardNumber() {
         int totalNumber = jdbcTemplate.queryForObject("select count(*) from board", Integer.class);
         return totalNumber;
+    }
+
+    public List<CommentDto> getComment(int boardId) {
+        List<CommentDto> comments = jdbcTemplate.query("select * from comment where BOARDID = ?",
+                (ResultSet rs, int numRow) -> {
+                    CommentDto comment = new CommentDto();
+                    comment.setUserName(rs.getString("userName"));
+                    comment.setContent(rs.getString("content"));
+                    comment.setDate(rs.getString("date"));
+                    return comment;
+                }, boardId);
+        return comments;
     }
 }
