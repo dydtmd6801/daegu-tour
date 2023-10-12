@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -126,5 +127,16 @@ public class BoardController {
             return "success";
         }
         return "fail";
+    }
+
+    @ResponseBody
+    @PostMapping("/insertComment")
+    public void insertComment(HttpServletRequest request) {
+        CommentDto comment = new CommentDto();
+        comment.setUserName(request.getParameter("userName"));
+        comment.setContent(request.getParameter("content"));
+        comment.setDate(String.valueOf(LocalDate.now()));
+        comment.setBoardId(Integer.parseInt(request.getParameter("boardId")));
+        boardService.saveComment(comment);
     }
 }
