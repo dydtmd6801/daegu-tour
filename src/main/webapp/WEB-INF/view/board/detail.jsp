@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script defer src="../../../static/js/insertComment.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -25,20 +27,20 @@
     </div>
     <div class="p-3 border-1 border-dark-subtle border-bottom">${boardDetail.content}</div>
 </div>
-<c:forEach var="comment" items="${comments}">
-    <div class="mx-auto" style="max-width: 992px">
+<div class="mx-auto" style="max-width: 992px" id="commentList">
+    <c:forEach var="comment" items="${comments}">
         <div class="p-3 border-1 border-dark-subtle border-bottom d-flex flex-row align-items-center">
             <span class="fw-bold" style="width: 10%">${comment.userName}</span>
             <span>${comment.content}</span>
         </div>
-    </div>
-</c:forEach>
+    </c:forEach>
+</div>
 <c:if test="${!empty AuthInfo}">
     <div class="mx-auto " style="max-width: 992px">
         <div class="p-3 border-1 border-dark-subtle border-bottom d-flex flex-row align-items-center">
-            <span class="fw-bold" style="width: 10%">${AuthInfo.userName}</span>
+            <span class="fw-bold" style="width: 10%" id="userName">${AuthInfo.userName}</span>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="댓글을 입력해주세요">
+                <input type="text" class="form-control" placeholder="댓글을 입력해주세요" id="content"/>
                 <button class="btn btn-outline-secondary" type="button" id="inputComment">댓글 입력</button>
             </div>
         </div>
@@ -46,7 +48,8 @@
 </c:if>
 <div class="text-center">
     <c:if test="${!empty AuthInfo}">
-        <a class="btn btn-outline-secondary mt-3" href="/board/modify?id=${boardDetail.id}&recentPage=${recentPage}">수정</a>
+        <a class="btn btn-outline-secondary mt-3"
+           href="/board/modify?id=${boardDetail.id}&recentPage=${recentPage}">수정</a>
     </c:if>
     <a class="btn btn-outline-secondary mt-3" href="/board?page=${recentPage}">목록</a>
 </div>
