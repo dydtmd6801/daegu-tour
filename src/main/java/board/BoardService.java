@@ -48,4 +48,8 @@ public class BoardService {
     public List<CommentDto> commentList(int boardId) {
         return boardDao.getComment(boardId);
     }
+
+    public void saveComment(CommentDto commentDto) {
+        boardDao.insertComment(commentDto);
+    }
 }

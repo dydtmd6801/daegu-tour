@@ -1,5 +1,6 @@
 package board;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -102,5 +103,21 @@ public class BoardDao {
                     return comment;
                 }, boardId);
         return comments;
+    }
+
+    public void insertComment(CommentDto commentDto) {
+        jdbcTemplate.update(
+                new PreparedStatementCreator() {
+                    @Override
+                    public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                        PreparedStatement pstmt = con.prepareStatement("insert into comment (USERNAME, CONTENT, BOARDID, DATE) VALUES (?,?,?,?)");
+                        pstmt.setString(1, commentDto.getUserName());
+                        pstmt.setString(2, commentDto.getContent());
+                        pstmt.setString(3, String.valueOf(commentDto.getBoardId()));
+                        pstmt.setString(4, commentDto.getDate());
+                        return pstmt;
+                    }
+                }
+        );
     }
 }
