@@ -5,3 +5,4 @@ build
 keyConfig.properties
 emailConfig.properties
 /out
+/lib
