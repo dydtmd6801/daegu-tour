@@ -78,7 +78,19 @@
     </nav>
 </div>
 <div class="d-flex justify-content-end mx-auto" style="max-width: 992px;">
-    <a class="btn btn-outline-secondary" href="/board/write">글쓰기</a>
+    <a class="btn btn-outline-secondary" style="margin-bottom: 30px" href="/board/write">글쓰기</a>
 </div>
+<footer class="w-100 border-top border-secondary">
+    <div class="mx-auto" style="max-width: 992px">
+        <div style="margin: 30px 20px 20px 0;">
+            <a href="/index" class="fw-bold fs-4 text-decoration-none text-black">대구 관광</a>
+        </div>
+        <div style="padding-bottom: 30px;">
+            <span style="margin-right: 15px;" class="fw-bold text-black">개발자 정보</span>
+            <span style="margin-right: 15px;" class="text-secondary">유용승</span>
+            <span style="margin-right: 15px;"><a href="https://github.com/dydtmd6801" target="_blank" class="text-secondary text-decoration-none">GitHub</a></span>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
